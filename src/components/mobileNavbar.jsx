@@ -25,6 +25,10 @@ const MobileNavbar = ({ activeLink, setActiveLink }) => {
   const [confettiShapes, setConfettiShapes] = useState([]);
   // Profile image state
   const [currentProfilePic, setCurrentProfilePic] = useState(AlexImg);
+  // State for Showcase expansion
+  const [showcaseExpanded, setShowcaseExpanded] = useState(false);
+  // State for Contact expansion
+  const [contactExpanded, setContactExpanded] = useState(false);
 
   // Array of alternate images for profile picture change
   const unprofessionalPics = [
@@ -139,12 +143,143 @@ const MobileNavbar = ({ activeLink, setActiveLink }) => {
             transition={{ type: 'spring', stiffness: 100 }}
             style={{ maxHeight: 'calc(100vh - 4rem)', overflowY: 'auto' }}
           >
-            {['About', 'CV', 'Ideas', 'Showcase', 'Contact'].map((item) => {
+            {['About', 'CV', 'Showcase', 'Contact'].map((item) => {
               const linkPath =
                 item === 'About' ? '/' : `/${item.toLowerCase()}`;
               const isActive =
                 activeLink === linkPath ||
                 (item === 'About' && activeLink === '/');
+
+              if (item === 'Showcase') {
+                return (
+                  <div key={item} className="relative">
+                    <motion.div
+                      whileHover={{
+                        scale: 1.05,
+                        y: -2,
+                        transition: { duration: 0.2 },
+                      }}
+                      className={`px-4 py-2 text-sm cursor-pointer ${
+                        isActive ? 'text-[#E94D35]' : 'text-gray-700'
+                      }`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowcaseExpanded(!showcaseExpanded);
+                      }}
+                    >
+                      {item}
+                    </motion.div>
+                    {showcaseExpanded && (
+                      <motion.div
+                        className="pl-4"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {['Pos System', 'VictoryVault', 'Client websites'].map(
+                          (subItem) => (
+                            <motion.div
+                              key={subItem}
+                              whileHover={{
+                                scale: 1.05,
+                                y: -2,
+                                transition: { duration: 0.2 },
+                              }}
+                              className={`px-4 py-2 text-sm cursor-pointer ${
+                                activeLink ===
+                                `/${subItem.toLowerCase().replace(' ', '-')}`
+                                  ? 'text-[#E94D35]'
+                                  : 'text-gray-700'
+                              }`}
+                              onClick={() => {
+                                setActiveLink(
+                                  `/${subItem.toLowerCase().replace(' ', '-')}`
+                                );
+                                window.location.href = `/${subItem
+                                  .toLowerCase()
+                                  .replace(' ', '-')}`;
+                                setMenuOpen(false);
+                              }}
+                            >
+                              {subItem}
+                            </motion.div>
+                          )
+                        )}
+                      </motion.div>
+                    )}
+                  </div>
+                );
+              }
+
+              if (item === 'Contact') {
+                return (
+                  <div key={item} className="relative">
+                    <motion.div
+                      whileHover={{
+                        scale: 1.05,
+                        y: -2,
+                        transition: { duration: 0.2 },
+                      }}
+                      className={`px-4 py-2 text-sm cursor-pointer ${
+                        isActive ? 'text-[#E94D35]' : 'text-gray-700'
+                      }`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setContactExpanded(!contactExpanded);
+                      }}
+                    >
+                      {item}
+                    </motion.div>
+                    {contactExpanded && (
+                      <motion.div
+                        className="pl-4"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {[
+                          { name: 'Email', url: 'mailto:alexwentzel@live.dk' },
+                          {
+                            name: 'LinkedIn',
+                            url: 'https://www.linkedin.com/in/alexander-wentzel-621654196/',
+                          },
+                          {
+                            name: 'Github',
+                            url: 'https://github.com/WonderWeasel01',
+                          },
+                        ].map((subItem) => (
+                          <motion.div
+                            key={subItem.name}
+                            whileHover={{
+                              scale: 1.05,
+                              y: -2,
+                              transition: { duration: 0.2 },
+                            }}
+                            className={`px-4 py-2 text-sm cursor-pointer ${
+                              activeLink ===
+                              `/${subItem.name.toLowerCase().replace(' ', '-')}`
+                                ? 'text-[#E94D35]'
+                                : 'text-gray-700'
+                            }`}
+                            onClick={() => {
+                              setActiveLink(
+                                `/${subItem.name
+                                  .toLowerCase()
+                                  .replace(' ', '-')}`
+                              );
+                              window.location.href = subItem.url;
+                              setMenuOpen(false);
+                            }}
+                          >
+                            {subItem.name}
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <motion.div
                   key={item}

@@ -19,7 +19,7 @@ app.use('/api/data', passworRoutes);
 app.use('/api', apiRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://wentzelevent.dk:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
 
 export default app;

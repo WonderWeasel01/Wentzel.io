@@ -10,6 +10,9 @@ import PasswordProtect from './components/passwordProtect';
 import Home from './pages/home';
 import AdminHome from './pages/admin/home';
 import CV from './pages/cv';
+import Victoryvault from './pages/victoryvault-showcase';
+import Pos from './pages/pos-system-showcase';
+import Clients from './pages/client-portfolio';
 import Navbar from './components/navbar';
 import MobileNavbar from './components/mobileNavbar';
 import './index.css';
@@ -46,6 +49,9 @@ const PageRoutes = () => {
                 />
                 <Route path="/" element={<Home />} />
                 <Route path="/cv" element={<CV />} />
+                <Route path="/victoryvault" element={<Victoryvault />} />
+                <Route path="/pos-system" element={<Pos />} />
+                <Route path="/client-websites" element={<Clients />} />
               </Routes>
             </div>
           </div>
@@ -68,6 +74,9 @@ const PageRoutes = () => {
                 />
                 <Route path="/" element={<Home />} />
                 <Route path="/cv" element={<CV />} />
+                <Route path="/victoryvault" element={<Victoryvault />} />
+                <Route path="/pos-system" element={<Pos />} />
+                <Route path="/client-websites" element={<Clients />} />
               </Routes>
             </div>
           </div>

@@ -208,7 +208,7 @@ const Navbar = () => {
 
       {/* Navigation Links */}
       <div className="relative z-10 flex flex-col">
-        {['About', 'CV', 'Ideas'].map((item) => {
+        {['About', 'CV'].map((item) => {
           const isActive =
             activeLink === `/${item.toLowerCase()}` ||
             (item === 'About' && activeLink === '/');
