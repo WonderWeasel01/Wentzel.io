@@ -54,7 +54,7 @@ const POSSystemShowcase = () => {
       {/* Main Content Area */}
       <main className="flex flex-col w-full min-h-[100vh] p-4 overflow-hidden relative">
         {/* Development Status Banner */}
-        <div className="bg-amber-100 text-amber-800 px-4 py-3 rounded-lg mb-8 border border-amber-200 shadow-sm">
+        <div className="bg-amber-100 text-amber-800 py-3 rounded-lg mb-8 border border-amber-200 shadow-sm">
           <p className="text-center font-medium">
             🚧 GadeFest POS is currently under development. This system will be
             completed for the event on May 3rd. 🚧
@@ -351,35 +351,35 @@ const POSSystemShowcase = () => {
               <div className="relative border-l-2 border-amber-500 ml-4 md:ml-0 md:mx-auto md:max-w-3xl pl-8 md:pl-0">
                 {[
                   {
-                    date: 'April 1, 2025',
+                    date: 'Marts 1, 2025',
                     title: 'Project Kickoff',
                     description:
                       'Initial planning and requirements gathering for the GadeFest POS system',
                     status: 'Completed',
                   },
                   {
-                    date: 'April 10, 2025',
+                    date: 'Marts 10, 2025',
                     title: 'UI Design & Prototyping',
                     description:
                       'Design of user interface and creation of interactive prototypes',
-                    status: 'Completed',
-                  },
-                  {
-                    date: 'April 20, 2025',
-                    title: 'Core Functionality',
-                    description:
-                      'Implementation of sales processing and inventory management features',
                     status: 'In Progress',
                   },
                   {
-                    date: 'April 27, 2025',
+                    date: 'April 1, 2025',
+                    title: 'Core Functionality',
+                    description:
+                      'Implementation of sales processing and inventory management features',
+                    status: 'Upcoming',
+                  },
+                  {
+                    date: 'April 10, 2025',
                     title: 'Vibrant Integration',
                     description:
                       'Integration with Vibrant payment processing system',
                     status: 'Upcoming',
                   },
                   {
-                    date: 'May 1, 2025',
+                    date: 'April 25, 2025',
                     title: 'Testing & Deployment',
                     description:
                       'Final testing and deployment preparation for the event',

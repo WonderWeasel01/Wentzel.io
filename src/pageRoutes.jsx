@@ -60,7 +60,7 @@ const PageRoutes = () => {
         <div className="flex h-screen bg-stone-100 text-stone-900 selection:bg-amber-200 selection:text-stone-900 overflow-hidden">
           <Navbar />
           <div className="flex-1 overflow-y-auto pl-64 w-full overflow-hidden">
-            <div className="w-full max-w-7xl mx-auto px-4">
+            <div className="w-full max-w-7xl mx-auto">
               <Routes>
                 <Route
                   path="/admin/*"
