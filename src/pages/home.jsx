@@ -234,7 +234,7 @@ const Home = () => {
                     <h3 className="text-xl font-bold">Realtruck</h3>
                   </div>
                   <p className="text-lg leading-relaxed">
-                    Developed a React application with SQL backend to manage
+                    Developed a React application with SQL database and a node.js backend to manage
                     production tracking. The system timed workers' tasks,
                     counted completed products, and provided data to team
                     leaders. Managed a database with over 10,000 products.
