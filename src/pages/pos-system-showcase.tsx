@@ -18,7 +18,7 @@ import {
   Tablet,
   Users,
 } from 'lucide-react';
-import NoiseFilter from '../components/NoiseFilter';
+import NoiseFilter from '../components/noiseFilter';
 import { shapes } from '../components/shapes';
 
 // Placeholder for actual screenshots - replace with your real screenshots

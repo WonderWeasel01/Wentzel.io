@@ -10,7 +10,7 @@ import {
   Laptop,
   Lock,
 } from 'lucide-react';
-import NoiseFilter from '../components/NoiseFilter';
+import NoiseFilter from '../components/noiseFilter';
 import { shapes } from '../components/shapes';
 import { Link as RouterLink } from 'react-router-dom';
 

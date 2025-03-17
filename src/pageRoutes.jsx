@@ -9,7 +9,7 @@ import {
 import PasswordProtect from './components/passwordProtect';
 import Home from './pages/home';
 import AdminHome from './pages/admin/home';
-import CV from './pages/cv';
+import CV from './pages/CV';
 import Victoryvault from './pages/victoryvault-showcase';
 import Pos from './pages/pos-system-showcase';
 import Clients from './pages/client-portfolio';

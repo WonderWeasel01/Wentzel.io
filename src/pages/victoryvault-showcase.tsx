@@ -10,7 +10,7 @@ import {
   BarChart2,
   Share2,
 } from 'lucide-react';
-import NoiseFilter from '../components/NoiseFilter';
+import NoiseFilter from '../components/noiseFilter';
 import { shapes } from '../components/shapes';
 
 // In Vite, you can import images directly
