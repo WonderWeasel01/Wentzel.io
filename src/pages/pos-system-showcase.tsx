@@ -362,14 +362,14 @@ const POSSystemShowcase = () => {
                     title: 'UI Design & Prototyping',
                     description:
                       'Design of user interface and creation of interactive prototypes',
-                    status: 'In Progress',
+                    status: 'Completed',
                   },
                   {
                     date: 'April 1, 2025',
                     title: 'Core Functionality',
                     description:
                       'Implementation of sales processing and inventory management features',
-                    status: 'Upcoming',
+                    status: 'In Progress',
                   },
                   {
                     date: 'April 10, 2025',

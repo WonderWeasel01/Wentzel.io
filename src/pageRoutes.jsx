@@ -16,6 +16,7 @@ import Clients from './pages/client-portfolio';
 import Navbar from './components/navbar';
 import MobileNavbar from './components/mobileNavbar';
 import './index.css';
+import GuestBook from './pages/guest-book';
 
 const PageRoutes = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -77,6 +78,7 @@ const PageRoutes = () => {
                 <Route path="/victoryvault" element={<Victoryvault />} />
                 <Route path="/pos-system" element={<Pos />} />
                 <Route path="/client-websites" element={<Clients />} />
+                <Route path="/guestbook" element={<GuestBook />} />
               </Routes>
             </div>
           </div>
