@@ -115,7 +115,7 @@ export default function CVPage() {
       id: 'lille-naestved-if',
       role: t('cv.timeline.lille_naestved_if.role'),
       company: t('cv.timeline.lille_naestved_if.company'),
-      period: '2024',
+      period: '2024 - 2026',
       location: 'Næstved',
       description: [
         t('cv.timeline.lille_naestved_if.desc1'),
@@ -210,9 +210,9 @@ export default function CVPage() {
                 
                 {/* Contact Info */}
                 <div className="flex flex-wrap gap-4 text-stone-600">
-                  <a href="mailto:Alexwentzel@live.dk" className="flex items-center gap-2 hover:text-amber-600 transition-colors">
+                  <a href="mailto:alex@wentzel.io" className="flex items-center gap-2 hover:text-amber-600 transition-colors">
                     <Mail size={18} />
-                    Alexwentzel@live.dk
+                    alex@wentzel.io
                   </a>
                   <a href="tel:+4552391248" className="flex items-center gap-2 hover:text-amber-600 transition-colors">
                     <Phone size={18} />
@@ -344,7 +344,7 @@ export default function CVPage() {
           </div>
         </div>
         <div className="text-right text-sm text-stone-600 space-y-1">
-          <p>Alexwentzel@live.dk</p>
+          <p>alex@wentzel.io</p>
           <p>+45 52 39 12 48</p>
           <p>{t('cv.location')}</p>
           <p>linkedin.com/in/alexander-wentzel</p>

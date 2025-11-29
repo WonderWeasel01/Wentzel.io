@@ -50,7 +50,7 @@ export const en = {
   'cv.timeline.lille_naestved_if.role': 'Team Coach',
   'cv.timeline.lille_naestved_if.company': 'Lille Næstved Sports Association',
   'cv.timeline.lille_naestved_if.desc1': 'Coached jumping teams and taught gymnastics.',
-  'cv.timeline.lille_naestved_if.desc2': 'Responsible for planning training exercises and ensuring a safe environment.',
+  'cv.timeline.lille_naestved_if.desc2': 'Responsible for planning training exercises and ensuring a safe environment for children.',
   'cv.timeline.datamatiker.role': 'Computer Science Student',
   'cv.timeline.datamatiker.company': 'Zealand - Academy of Technologies and Business',
   'cv.timeline.realtruck_graphic.role': 'Graphic Design',

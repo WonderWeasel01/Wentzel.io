@@ -56,7 +56,7 @@ const NavbarContent = () => {
         ];
       case 'Contact':
         return [
-          { name: 'Email', url: 'mailto:alexwentzel@live.dk' },
+          { name: 'Email', url: 'mailto:alex@wentzel.io' },
           {
             name: 'LinkedIn',
             url: 'https://www.linkedin.com/in/alexander-wentzel-621654196/',

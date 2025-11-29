@@ -161,7 +161,7 @@ export default function Home() {
                       <Linkedin size={20} />
                     </a>
                     <a
-                      href="mailto:alexwentzel@live.dk"
+                      href="mailto:alex@wentzel.io"
                       className="p-2 border border-stone-300 rounded-full hover:bg-stone-200 transition-colors"
                       aria-label="Email"
                     >
@@ -233,7 +233,7 @@ export default function Home() {
 
               <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
                 <motion.a
-                  href="mailto:alexwentzel@live.dk"
+                  href="mailto:alex@wentzel.io"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center gap-3 bg-amber-500 text-stone-900 px-8 py-4 rounded-full hover:bg-amber-400 transition-colors font-bold text-lg shadow-xl hover:shadow-2xl hover:shadow-amber-500/20"

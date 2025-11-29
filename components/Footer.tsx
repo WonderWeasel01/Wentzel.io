@@ -23,9 +23,9 @@ export default function Footer() {
           {/* Contact Info */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <h4 className="font-bold text-stone-900 mb-4">{t('footer.contact')}</h4>
-            <a href="mailto:alexwentzel@live.dk" className="flex items-center gap-2 mb-2 hover:text-amber-600 transition-colors">
+            <a href="mailto:alex@wentzel.io" className="flex items-center gap-2 mb-2 hover:text-amber-600 transition-colors">
               <Mail size={16} />
-              Alexwentzel@live.dk
+              alex@wentzel.io
             </a>
             <a href="tel:+4552391248" className="flex items-center gap-2 hover:text-amber-600 transition-colors">
               <Phone size={16} />

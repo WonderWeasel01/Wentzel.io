@@ -50,7 +50,7 @@ export const da = {
   'cv.timeline.lille_naestved_if.role': 'Hold Træner',
   'cv.timeline.lille_naestved_if.company': 'Lille Næstved Idræts Forening',
   'cv.timeline.lille_naestved_if.desc1': 'Trænede springhold og underviste i gymnastik.',
-  'cv.timeline.lille_naestved_if.desc2': 'Ansvarlig for planlægning af træningsøvelser og sikring af et sikkert miljø.',
+  'cv.timeline.lille_naestved_if.desc2': 'Ansvarlig for planlægning af træningsøvelser og ansvar for børnenes sikkerhed.',
   'cv.timeline.datamatiker.role': 'Datamatiker',
   'cv.timeline.datamatiker.company': 'Zealand - Sjællands Erhvervsakademi',
   'cv.timeline.realtruck_graphic.role': 'Grafisk Design',
