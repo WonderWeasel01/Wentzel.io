@@ -49,10 +49,8 @@ const NavbarContent = () => {
     switch (category) {
       case 'Showcase':
         return [
-          { name: t('nav.all_projects'), path: '/projects' },
           { name: t('nav.clients'), path: '/projects?category=client' },
           { name: t('nav.personal'), path: '/projects?category=personal' },
-          { name: t('nav.experience'), path: '/cv' },
         ];
       case 'Contact':
         return [
@@ -100,7 +98,7 @@ const NavbarContent = () => {
     const numConfetti = 20;
     const maxBurstDistance = 550;
 
-    const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#45B7FF', '#FFA5A5'];
+    const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#45B7FF', '#FFA5A5', '#9370DB'];
 
     for (let i = 0; i < numConfetti; i++) {
       const randomShape = shapes[Math.floor(Math.random() * shapes.length)];

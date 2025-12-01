@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { shapes } from '../../components/shapes';
 import NoiseFilter from '../../components/NoiseFilter';
@@ -18,10 +18,12 @@ import {
   Code,
   Layout,
   PenTool,
-  Printer
+  Printer,
+  ArrowDown
 } from 'lucide-react';
 import Image from 'next/image';
 import { useLanguage } from '../../contexts/LanguageContext';
+import Footer from '../../components/Footer';
 
 interface TimelineItem {
   id: string;
@@ -50,6 +52,8 @@ export default function CVPage() {
 
   const lineHeight = useTransform(scrollProgress, [0, 1], ["0%", "100%"]);
 
+  const [showPreview, setShowPreview] = useState(false);
+
   useEffect(() => {
     setRandomShapes(
       Array.from(
@@ -61,6 +65,10 @@ export default function CVPage() {
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const scrollToStructuredCV = () => {
+    document.getElementById('structured-cv')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const timelineData: TimelineItem[] = [
@@ -223,6 +231,16 @@ export default function CVPage() {
                     LinkedIn
                   </a>
                 </div>
+
+                <div className="mt-8 pt-8 border-t border-stone-200 flex flex-col items-start relative">
+                  <button
+                    onClick={() => setShowPreview(true)}
+                    className="relative group inline-flex items-center gap-2 bg-stone-900 text-white px-6 py-3 rounded-xl hover:bg-stone-800 transition-colors shadow-md"
+                  >
+                    <span className="font-medium">{t('cv.view_cv')}</span>
+                    
+                  </button>
+                </div>
               </div>
             </motion.div>
 
@@ -306,129 +324,247 @@ export default function CVPage() {
           </div>
         </div>
 
-        {/* Download Section */}
-        <div className="relative z-10 w-full px-12 pb-24 bg-stone-100">
-          <div className="max-w-4xl mx-auto text-center border-t border-stone-200 pt-16">
-            <h2 className="text-2xl font-bold mb-8">Download CV</h2>
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={handlePrint}
-                className="inline-flex items-center justify-center gap-2 bg-amber-500 text-white px-8 py-4 rounded-xl hover:bg-amber-600 transition-colors shadow-lg hover:shadow-xl"
-              >
-                <Download className="w-5 h-5" />
-                {t('cv.download.button')}
-              </button>
-            </div>
-          </div>
-        </div>
+      <Footer />
       </main>
     </div>
 
-    {/* Print View - Hidden on Screen */}
-    <div className="hidden print:block bg-white text-black p-8 max-w-[210mm] mx-auto">
-      {/* Header */}
-      <div className="border-b-2 border-stone-800 pb-8 mb-8 flex justify-between items-center">
-        <div className="flex items-center gap-6">
-          <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-stone-200 shrink-0">
-            <Image 
-              src="/images/alex.jpeg" 
-              alt="Alex Wentzel" 
-              fill 
-              className="object-cover"
-              priority
-            />
-          </div>
-          <div>
-            <h1 className="text-4xl font-bold uppercase tracking-wider mb-2">Alexander Wentzel</h1>
-            <h2 className="text-xl text-stone-600 font-medium">{t('cv.role.title')}</h2>
-          </div>
-        </div>
-        <div className="text-right text-sm text-stone-600 space-y-1">
-          <p>alex@wentzel.io</p>
-          <p>+45 52 39 12 48</p>
-          <p>{t('cv.location')}</p>
-          <p>linkedin.com/in/alexander-wentzel</p>
-        </div>
-      </div>
+    {/* Structured CV Modal */}
+    <AnimatePresence>
+    {showPreview && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowPreview(false)}>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          onClick={(e) => e.stopPropagation()}
+          className="bg-white max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl max-w-[210mm] w-full"
+        >
+          <div id="structured-cv" className="bg-white text-black p-8 mx-auto">
+            {/* Header */}
+            <div className="border-b-2 border-stone-800 pb-8 mb-8 flex justify-between items-center">
+              <div className="flex items-center gap-6">
+                <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-stone-200 shrink-0">
+                  <Image 
+                    src="/images/alex.jpeg" 
+                    alt="Alex Wentzel" 
+                    fill 
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                <div>
+                  <h1 className="text-4xl font-bold uppercase tracking-wider mb-2">Alexander Wentzel</h1>
+                  <h2 className="text-xl text-stone-600 font-medium">{t('cv.role.title')}</h2>
+                </div>
+              </div>
+              <div className="text-right text-sm text-stone-600 space-y-1">
+                <p>alex@wentzel.io</p>
+                <p>+45 52 39 12 48</p>
+                <p>{t('cv.location')}</p>
+                <p>linkedin.com/in/alexander-wentzel</p>
+              </div>
+            </div>
 
-      <div className="grid grid-cols-3 gap-8">
-        {/* Left Column - Main Content */}
-        <div className="col-span-2 space-y-8">
-          {/* Profile */}
-          <section>
-            <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.profile')}</h3>
-            <p className="text-sm text-stone-700 leading-relaxed">
-              {t('cv.bio')}
-            </p>
-          </section>
+            <div className="grid grid-cols-3 gap-8">
+              {/* Left Column - Main Content */}
+              <div className="col-span-2 space-y-8">
+                {/* Profile */}
+                <section>
+                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.profile')}</h3>
+                  <p className="text-sm text-stone-700 leading-relaxed">
+                    {t('cv.bio')}
+                  </p>
+                </section>
 
-          {/* Experience */}
-          <section>
-            <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.experience')}</h3>
-            <div className="space-y-6">
-              {timelineData.filter(item => item.type === 'work').map(item => (
-                <div key={item.id}>
-                  <div className="flex justify-between items-baseline mb-1">
-                    <h4 className="font-bold text-stone-900">{item.role}</h4>
-                    <span className="text-xs text-stone-500 font-medium">{item.period}</span>
+                {/* Experience */}
+                <section>
+                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.experience')}</h3>
+                  <div className="space-y-6">
+                    {timelineData.filter(item => item.type === 'work').map(item => (
+                      <div key={item.id}>
+                        <div className="flex justify-between items-baseline mb-1">
+                          <h4 className="font-bold text-stone-900">{item.role}</h4>
+                          <span className="text-xs text-stone-500 font-medium">{item.period}</span>
+                        </div>
+                        <div className="text-sm text-amber-700 font-medium mb-1">{item.company}</div>
+                        {item.description.length > 0 && (
+                          <ul className="list-disc list-outside ml-4 text-xs text-stone-600 space-y-1">
+                            {item.description.map((desc, i) => (
+                              <li key={i}>{desc}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
                   </div>
-                  <div className="text-sm text-amber-700 font-medium mb-1">{item.company}</div>
-                  {item.description.length > 0 && (
-                    <ul className="list-disc list-outside ml-4 text-xs text-stone-600 space-y-1">
-                      {item.description.map((desc, i) => (
-                        <li key={i}>{desc}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
+                </section>
+              </div>
+
+              {/* Right Column - Sidebar */}
+              <div className="col-span-1 space-y-8">
+                {/* Education */}
+                <section>
+                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.education')}</h3>
+                  <div className="space-y-4">
+                    {timelineData.filter(item => item.type === 'education').map(item => (
+                      <div key={item.id}>
+                        <h4 className="font-bold text-sm text-stone-900">{item.company}</h4>
+                        <div className="text-xs text-stone-600 mb-1">{item.role}</div>
+                        <span className="text-xs text-stone-500 block">{item.period}</span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Skills */}
+                <section>
+                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.skills')}</h3>
+                  <ul className="space-y-2">
+                    {skills.map((skill, index) => (
+                      <li key={index} className="text-sm text-stone-700 flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
+                        {skill.name}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+
+                {/* Languages */}
+                <section>
+                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.languages')}</h3>
+                  <ul className="space-y-2">
+                    {languages.map((lang, index) => (
+                      <li key={index} className="text-sm text-stone-700">
+                        <div className="font-medium">{lang.name}</div>
+                        <div className="text-xs text-stone-500">{lang.level}</div>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              </div>
             </div>
-          </section>
-        </div>
-
-        {/* Right Column - Sidebar */}
-        <div className="col-span-1 space-y-8">
-          {/* Education */}
-          <section>
-            <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.education')}</h3>
-            <div className="space-y-4">
-              {timelineData.filter(item => item.type === 'education').map(item => (
-                <div key={item.id}>
-                  <h4 className="font-bold text-sm text-stone-900">{item.company}</h4>
-                  <div className="text-xs text-stone-600 mb-1">{item.role}</div>
-                  <span className="text-xs text-stone-500 block">{item.period}</span>
-                </div>
-              ))}
+            
+            {/* Print Button Inside Modal */}
+            <div className="mt-12 flex justify-center print:hidden">
+              <button
+                onClick={handlePrint}
+                className="flex items-center gap-2 bg-stone-900 text-white px-6 py-3 rounded-lg hover:bg-stone-800 transition-colors"
+              >
+                <Printer size={18} />
+                Print / Gem som PDF
+              </button>
             </div>
-          </section>
-
-          {/* Skills */}
-          <section>
-            <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.skills')}</h3>
-            <ul className="space-y-2">
-              {skills.map((skill, index) => (
-                <li key={index} className="text-sm text-stone-700 flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
-                  {skill.name}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          {/* Languages */}
-          <section>
-            <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.languages')}</h3>
-            <ul className="space-y-2">
-              {languages.map((lang, index) => (
-                <li key={index} className="text-sm text-stone-700">
-                  <div className="font-medium">{lang.name}</div>
-                  <div className="text-xs text-stone-500">{lang.level}</div>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
+          </div>
+        </motion.div>
       </div>
+    )}
+    </AnimatePresence>
+
+    {/* Hidden Print Structure (for direct printing if needed outside modal context, though modal print is usually sufficient) */}
+    <div className="hidden print:block bg-white text-black p-8 max-w-[210mm] mx-auto">
+       {/* Same structure as above for pure print styles */}
+       <div className="border-b-2 border-stone-800 pb-8 mb-8 flex justify-between items-center">
+              <div className="flex items-center gap-6">
+                <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-stone-200 shrink-0">
+                  <Image 
+                    src="/images/alex.jpeg" 
+                    alt="Alex Wentzel" 
+                    fill 
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                <div>
+                  <h1 className="text-4xl font-bold uppercase tracking-wider mb-2">Alexander Wentzel</h1>
+                  <h2 className="text-xl text-stone-600 font-medium">{t('cv.role.title')}</h2>
+                </div>
+              </div>
+              <div className="text-right text-sm text-stone-600 space-y-1">
+                <p>alex@wentzel.io</p>
+                <p>+45 52 39 12 48</p>
+                <p>{t('cv.location')}</p>
+                <p>linkedin.com/in/alexander-wentzel</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-3 gap-8">
+              {/* Left Column - Main Content */}
+              <div className="col-span-2 space-y-8">
+                {/* Profile */}
+                <section>
+                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.profile')}</h3>
+                  <p className="text-sm text-stone-700 leading-relaxed">
+                    {t('cv.bio')}
+                  </p>
+                </section>
+
+                {/* Experience */}
+                <section>
+                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.experience')}</h3>
+                  <div className="space-y-6">
+                    {timelineData.filter(item => item.type === 'work').map(item => (
+                      <div key={item.id}>
+                        <div className="flex justify-between items-baseline mb-1">
+                          <h4 className="font-bold text-stone-900">{item.role}</h4>
+                          <span className="text-xs text-stone-500 font-medium">{item.period}</span>
+                        </div>
+                        <div className="text-sm text-amber-700 font-medium mb-1">{item.company}</div>
+                        {item.description.length > 0 && (
+                          <ul className="list-disc list-outside ml-4 text-xs text-stone-600 space-y-1">
+                            {item.description.map((desc, i) => (
+                              <li key={i}>{desc}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </div>
+
+              {/* Right Column - Sidebar */}
+              <div className="col-span-1 space-y-8">
+                {/* Education */}
+                <section>
+                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.education')}</h3>
+                  <div className="space-y-4">
+                    {timelineData.filter(item => item.type === 'education').map(item => (
+                      <div key={item.id}>
+                        <h4 className="font-bold text-sm text-stone-900">{item.company}</h4>
+                        <div className="text-xs text-stone-600 mb-1">{item.role}</div>
+                        <span className="text-xs text-stone-500 block">{item.period}</span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Skills */}
+                <section>
+                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.skills')}</h3>
+                  <ul className="space-y-2">
+                    {skills.map((skill, index) => (
+                      <li key={index} className="text-sm text-stone-700 flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
+                        {skill.name}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+
+                {/* Languages */}
+                <section>
+                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.languages')}</h3>
+                  <ul className="space-y-2">
+                    {languages.map((lang, index) => (
+                      <li key={index} className="text-sm text-stone-700">
+                        <div className="font-medium">{lang.name}</div>
+                        <div className="text-xs text-stone-500">{lang.level}</div>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              </div>
+            </div>
     </div>
     </>
   );

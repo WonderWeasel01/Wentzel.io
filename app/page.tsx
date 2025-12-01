@@ -14,7 +14,7 @@ import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, isLanguageSelectorOpen } = useLanguage();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [randomShapes, setRandomShapes] = useState<string[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -47,8 +47,8 @@ export default function Home() {
       
       <motion.div 
         className="flex w-full h-screen overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, filter: 'blur(10px)', scale: 1.02 }}
+        animate={!isLanguageSelectorOpen ? { opacity: 1, filter: 'blur(0px)', scale: 1 } : { opacity: 1, filter: 'blur(10px)', scale: 1.02 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {/* Noise Filter Overlay */}

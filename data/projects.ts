@@ -7,6 +7,7 @@ export interface Project {
   phoneMockup: string;
   phoneMockup2: string;
   website: string;
+  github?: string;
   technologies: string[];
   platform: string;
   package: string;
@@ -40,7 +41,7 @@ export const projects: Project[] = [
   {
     id: "boardgame-stats",
     title: "Boardgame Stats Tracker",
-    client: "Victory Vault",
+    client: "Personal Project",
     year: "2024",
     image: "/assets/vv-image.webp",
     screenshot: "/assets/vv-screenshot.webp",
@@ -270,5 +271,119 @@ export const projects: Project[] = [
     translationKey: "projects.krudtraeven",
     fullDescriptionCount: 4,
     featuresCount: 5
+  },
+  {
+    id: "workout-tracker",
+    title: "Workout Tracker",
+    client: "Personal Project",
+    year: "Jun 2025",
+    image: "/assets/workout-tracker-image.webp",
+    screenshot: "/assets/workout-tracker-screenshot.webp",
+    phoneMockup: "/assets/workout-tracker-image.webp",
+    phoneMockup2: "/assets/workout-tracker-mobile2.webp",
+    website: "https://github.com/WonderWeasel01/Workout-Tracker",
+    github: "https://github.com/WonderWeasel01/Workout-Tracker",
+    technologies: ["Node.js", "Express", "MongoDB", "Tailwind CSS", "JWT"],
+    platform: "Web App",
+    package: "Personal",
+    type: "personal",
+    translationKey: "projects.workout-tracker",
+    fullDescriptionCount: 3,
+    featuresCount: 4
+  },
+  {
+    id: "static-profile-craft",
+    title: "Static Profile Craft",
+    client: "Personal Project",
+    year: "Jun 2025",
+    image: "/assets/static-profile-craft-image.webp",
+    screenshot: "/assets/static-profile-craft-screenshot.webp",
+    phoneMockup: "/assets/static-profile-craft-image.webp",
+    phoneMockup2: "/assets/static-profile-craft-mobile2.webp",
+    website: "https://github.com/WonderWeasel01/static-profile-craft",
+    github: "https://github.com/WonderWeasel01/static-profile-craft",
+    technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui"],
+    platform: "Web App",
+    package: "Personal",
+    type: "personal",
+    translationKey: "projects.static-profile-craft",
+    fullDescriptionCount: 3,
+    featuresCount: 4
+  },
+  {
+    id: "car-sorter",
+    title: "CarSorter",
+    client: "Terminal Project",
+    year: "Feb 2025",
+    image: "/assets/car-sorter-image.webp",
+    screenshot: "/assets/car-sorter-screenshot.webp",
+    phoneMockup: "/assets/car-sorter-image.webp",
+    phoneMockup2: "/assets/car-sorter-mockup2.webp",
+    website: "https://github.com/WonderWeasel01/CarSorter",
+    github: "https://github.com/WonderWeasel01/CarSorter",
+    technologies: ["Rust", "Cargo"],
+    platform: "Terminal",
+    package: "Personal",
+    type: "personal",
+    translationKey: "projects.car-sorter",
+    fullDescriptionCount: 3,
+    featuresCount: 3
+  },
+  {
+    id: "wentzel-storage",
+    title: "Pack Pal (Wentzel Storage)",
+    client: "Personal Project",
+    year: "Jul 2025",
+    image: "/assets/wentzel-storage-image.webp",
+    screenshot: "/assets/wentzel-storage-screenshot.webp",
+    phoneMockup: "/assets/wentzel-storage-mobile.webp",
+    phoneMockup2: "/assets/wentzel-storage-mobile2.webp",
+    website: "https://github.com/WonderWeasel01/pack-pal-tablet",
+    github: "https://github.com/WonderWeasel01/pack-pal-tablet",
+    technologies: ["React", "TypeScript", "Vite"],
+    platform: "Tablet & Desktop",
+    package: "Personal",
+    type: "personal",
+    translationKey: "projects.wentzel-storage",
+    fullDescriptionCount: 3,
+    featuresCount: 4
+  },
+  {
+    id: "energy-drink-tracker",
+    title: "Energy Drink Tracker",
+    client: "Personal Project",
+    year: "Jun 2025",
+    image: "/assets/energy-drink-tracker-image.webp",
+    screenshot: "/assets/energy-drink-tracker-screenshot.webp",
+    phoneMockup: "/assets/energy-drink-tracker-mobile.webp",
+    phoneMockup2: "/assets/energy-drink-tracker-mobile2.webp",
+    website: "https://github.com/WonderWeasel01/Energy_Drink_Tracker",
+    github: "https://github.com/WonderWeasel01/Energy_Drink_Tracker",
+    technologies: ["React", "TypeScript", "Vite"],
+    platform: "Web App",
+    package: "Personal",
+    type: "personal",
+    translationKey: "projects.energy-drink-tracker",
+    fullDescriptionCount: 3,
+    featuresCount: 4
+  },
+  {
+    id: "minecraft-autosell",
+    title: "Minecraft AutoSell Plugin",
+    client: "Personal Project",
+    year: "Nov 2025",
+    image: "/assets/minecraft-autosell-image.webp",
+    screenshot: "/assets/minecraft-autosell-screenshot.webp",
+    phoneMockup: "/assets/minecraft-autosell-mockup.webp",
+    phoneMockup2: "/assets/minecraft-autosell-mockup2.webp",
+    website: "",
+    github: "", // Private repo
+    technologies: ["Java", "Spigot API", "Maven", "Vault API"],
+    platform: "Minecraft Plugin",
+    package: "Personal",
+    type: "personal",
+    translationKey: "projects.minecraft-autosell",
+    fullDescriptionCount: 3,
+    featuresCount: 4
   }
 ];

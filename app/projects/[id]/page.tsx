@@ -145,13 +145,13 @@ export default function ProjectDetailPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h3 className="text-xl font-bold mb-6 pb-4 border-b border-stone-100">Projekt Detaljer</h3>
+              <h3 className="text-xl font-bold mb-6 pb-4 border-b border-stone-100">{t('project.details')}</h3>
 
               <div className="space-y-6">
                 <div className="flex items-start">
                   <Calendar className="h-5 w-5 mr-4 text-amber-600 mt-1" />
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-1">Dato</p>
+                    <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-1">{t('project.date')}</p>
                     <p className="text-stone-800 font-medium">{t(`${project.translationKey}.date`)}</p>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ export default function ProjectDetailPage() {
                 <div className="flex items-start">
                   <User className="h-5 w-5 mr-4 text-amber-600 mt-1" />
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-1">Klient</p>
+                    <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-1">{t('project.client')}</p>
                     <p className="text-stone-800 font-medium">{project.client}</p>
                   </div>
                 </div>
@@ -167,7 +167,7 @@ export default function ProjectDetailPage() {
                 <div className="flex items-start">
                   <Layers className="h-5 w-5 mr-4 text-amber-600 mt-1" />
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-1">Platform</p>
+                    <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-1">{t('project.platform')}</p>
                     <p className="text-stone-800 font-medium">{project.platform}</p>
                   </div>
                 </div>
@@ -175,7 +175,7 @@ export default function ProjectDetailPage() {
                 <div className="flex items-start">
                   <Package className="h-5 w-5 mr-4 text-amber-600 mt-1" />
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-1">Pakke</p>
+                    <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-1">{t('project.package')}</p>
                     <p className="text-stone-800 font-medium">{project.package}</p>
                   </div>
                 </div>
@@ -183,19 +183,33 @@ export default function ProjectDetailPage() {
                 <div className="flex items-start pt-4 border-t border-stone-100 mt-2">
                   <Globe className="h-5 w-5 mr-4 text-amber-600 mt-1" />
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-1">Website</p>
+                    <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-1">{t('project.links')}</p>
                     {project.website ? (
                       <a
                         href={project.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-stone-900 hover:text-amber-600 font-bold flex items-center transition-colors group"
+                        className="text-stone-900 hover:text-amber-600 font-bold flex items-center transition-colors group mb-1"
                       >
-                        Besøg site
+                        {t('project.visit')}
                         <ExternalLink className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform" />
                       </a>
-                    ) : (
-                      <span className="text-stone-500 italic">Kommer snart</span>
+                    ) : null}
+                    
+                    {project.github ? (
+                       <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-stone-900 hover:text-amber-600 font-bold flex items-center transition-colors group"
+                      >
+                        GitHub Repo
+                        <Code className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    ) : null}
+
+                    {!project.website && !project.github && (
+                      <span className="text-stone-500 italic">{t('project.coming_soon')}</span>
                     )}
                   </div>
                 </div>
@@ -214,7 +228,7 @@ export default function ProjectDetailPage() {
               >
                 <h2 className="text-2xl font-bold mb-8 flex items-center gap-2">
                   <Globe className="w-6 h-6 text-amber-600" />
-                  {t('project.mobile')}
+                  {project.type === 'personal' ? t('project.screenshots') : t('project.mobile')}
                 </h2>
                 <div className="flex flex-col md:flex-row justify-center gap-12 items-center">
                   <div className="relative w-[500px] h-[400px]">
@@ -223,7 +237,7 @@ export default function ProjectDetailPage() {
                         src={project.phoneMockup}
                         alt={`${project.title} Mobile 1`}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         unoptimized
                       />
                     </div>
@@ -303,7 +317,7 @@ export default function ProjectDetailPage() {
 
           {/* Related Projects */}
           <section className="mt-24 pt-12 border-t border-stone-200">
-            <h2 className="text-3xl font-bold mb-8 text-stone-800">Andre Projekter</h2>
+            <h2 className="text-3xl font-bold mb-8 text-stone-800">{t('project.other_projects')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {projects
                 .filter((p) => p.id !== project.id)

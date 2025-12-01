@@ -45,7 +45,9 @@ function ProjectsContent() {
       'Juli': 7, 'August': 8, 'September': 9, 'Oktober': 10, 'November': 11, 'December': 12,
       // Engelske måneder for en sikkerheds skyld
       'January': 1, 'February': 2, 'March': 3, 'May': 5, 'June': 6,
-      'July': 7, 'October': 10
+      'July': 7, 'October': 10,
+      // Short months (English/Danish mix)
+      'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'Jun': 6, 'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Okt': 10, 'Nov': 11, 'Dec': 12
     };
 
     const parts = dateStr.trim().split(' ');
@@ -77,6 +79,15 @@ function ProjectsContent() {
         if (b.id === 'boardgame-stats') return -1;
       }
       
+      // If showing personal projects, sort by year descending (newest first)
+      if (category === 'personal') {
+         // Parse the year string (e.g. "Jun 2025")
+         const dateA = a.year;
+         const dateB = b.year;
+         
+         return parseDate(dateB) - parseDate(dateA);
+      }
+      
       const dateA = t(`${a.translationKey}.date`);
       const dateB = t(`${b.translationKey}.date`);
       
@@ -90,8 +101,8 @@ function ProjectsContent() {
   };
 
   const getSubtitle = () => {
-    if (category === 'client') return 'Udvalgte projekter for kunder og samarbejdspartnere';
-    if (category === 'personal') return 'Egne projekter og eksperimenter';
+    if (category === 'client') return t('projects.subtitle.clients');
+    if (category === 'personal') return t('projects.subtitle.personal');
     return t('projects.subtitle');
   };
 
@@ -215,7 +226,7 @@ function ProjectsContent() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end justify-start p-4">
                           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 text-stone-900 rounded-lg">
                             <Globe className="w-4 h-4" />
-                            Se projekt
+                            {t('project.view_project')}
                           </div>
                         </div>
                       </div>
@@ -254,7 +265,7 @@ function ProjectsContent() {
                         href={`/projects/${project.id}`}
                         className="inline-flex items-center gap-2 text-sm text-amber-600 hover:text-amber-800 font-medium"
                       >
-                        Læs mere
+                        {t('project.read_more')}
                         <ArrowUpRight className="w-4 h-4" />
                       </Link>
                     </div>

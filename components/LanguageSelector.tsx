@@ -86,7 +86,7 @@ export default function LanguageSelector({ onComplete }: LanguageSelectorProps) 
         transition={{ duration: 0.5 }}
       >
         {randomShapes.slice(0, 25).map((shape, i) => {
-          const colors = ['#A5FFD6', '#FFD700', '#9370DB', '#FFA07A', '#FF6B6B', '#4ECDC4', '#20B2AA', '#FFB6C1'];
+          const colors = ['#A5FFD6', '#FFD700', '#9370DB', '#FFA07A', '#FF6B6B', '#4ECDC4', '#20B2AA', '#FFB6C1', '#800080'];
           const color = colors[i % colors.length];
           const size = 24 + (i % 5) * 16; // Varying sizes
           
@@ -173,7 +173,7 @@ export default function LanguageSelector({ onComplete }: LanguageSelectorProps) 
           {/* Background shapes on Left Curtain */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
              {randomShapes.slice(0, 15).map((shape, i) => {
-               const colors = ['#A5FFD6', '#FFD700', '#9370DB', '#FFA07A', '#FF6B6B', '#4ECDC4', '#20B2AA', '#FFB6C1'];
+               const colors = ['#A5FFD6', '#FFD700', '#9370DB', '#FFA07A', '#FF6B6B', '#4ECDC4', '#20B2AA', '#FFB6C1', '#800080'];
                const color = colors[i % colors.length];
                const size = 24 + (i % 5) * 16; 
                
