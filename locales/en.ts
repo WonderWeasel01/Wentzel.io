@@ -351,6 +351,19 @@ export const en = {
   'projects.minecraft-autosell.features.2': 'Configurable item prices',
   'projects.minecraft-autosell.features.3': 'Status notifications',
 
+  // Projects - Jump and Run Platform
+  'projects.jump-and-run.description': 'A platform game ("endless runner") developed in the Rust programming language using the Bevy game engine.',
+  'projects.jump-and-run.fullDescription.0': 'In this game, you control a character that automatically runs to the right through a continuously generated world.',
+  'projects.jump-and-run.fullDescription.1': 'Your task is to jump over obstacles (such as logs and cacti) to survive and achieve a high score.',
+  'projects.jump-and-run.fullDescription.2': 'The game features procedurally generated terrain, a scoreboard system, and increasing difficulty (speed increases over time).',
+  'projects.jump-and-run.fullDescription.3': 'It is designed to be controlled via an external BBC Micro:bit connected via USB cable, listening to the computer\'s Serial Port.',
+  'projects.jump-and-run.date': 'Mar 2025',
+  'projects.jump-and-run.label': 'Rust Game',
+  'projects.jump-and-run.features.0': 'Procedurally generated terrain',
+  'projects.jump-and-run.features.1': 'Scoreboard system',
+  'projects.jump-and-run.features.2': 'Increasing difficulty',
+  'projects.jump-and-run.features.3': 'Micro:bit Integration via Serial Port',
+
   'footer.contact': 'Contact',
   'footer.socials': 'Social Media',
   'footer.rights': 'All rights reserved.',

@@ -385,5 +385,24 @@ export const projects: Project[] = [
     translationKey: "projects.minecraft-autosell",
     fullDescriptionCount: 3,
     featuresCount: 4
+  },
+  {
+    id: "jump-and-run",
+    title: "Jump and Run Platform",
+    client: "Personal Project",
+    year: "Mar 2025",
+    image: "/assets/jump-and-run-image.webp", // Placeholder as requested to use existing or similar
+    screenshot: "/assets/jump-and-run-screenshot.webp", // Placeholder
+    phoneMockup: "/assets/jump-and-run-image.webp", // Placeholder
+    phoneMockup2: "/assets/jump-and-Run-mockup2.webp", // Placeholder
+    website: "https://github.com/AndreasRahbek/jump-and-run-platform",
+    github: "https://github.com/AndreasRahbek/jump-and-run-platform",
+    technologies: ["Rust", "Bevy", "SerialPort", "Micro:bit"],
+    platform: "PC Game",
+    package: "Personal",
+    type: "personal",
+    translationKey: "projects.jump-and-run",
+    fullDescriptionCount: 4,
+    featuresCount: 4
   }
 ];

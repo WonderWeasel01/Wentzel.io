@@ -243,7 +243,7 @@ export default function ProjectDetailPage() {
                     </div>
                   </div>
                   
-                  <div className="relative w-[450px] h-[500px]">
+                  <div className="relative w-[500px] h-[400px]">
                     <div className="relative w-full h-full">
                       <Image
                         src={project.phoneMockup2}

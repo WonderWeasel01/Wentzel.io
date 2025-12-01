@@ -351,6 +351,19 @@ export const da = {
   'projects.minecraft-autosell.features.2': 'Konfigurerbare priser',
   'projects.minecraft-autosell.features.3': 'Statusnotifikationer',
 
+  // Projects - Jump and Run Platform
+  'projects.jump-and-run.description': 'Et platformspil ("endless runner") udviklet i programmeringssproget Rust ved hjælp af Bevy spilmotoren.',
+  'projects.jump-and-run.fullDescription.0': 'I dette spil styrer du en karakter, der automatisk løber mod højre gennem en kontinuerligt genereret verden.',
+  'projects.jump-and-run.fullDescription.1': 'Din opgave er at hoppe over forhindringer (som træstammer og kaktusser) for at overleve og opnå en høj score.',
+  'projects.jump-and-run.fullDescription.2': 'Spillet har procedurisk genereret terræn, scoreboardsystem og stigende sværhedsgrad (hastigheden øges over tid).',
+  'projects.jump-and-run.fullDescription.3': 'Det er designet til at blive styret via en ekstern BBC Micro:bit tilsluttet via USB-kabel, der lytter til computerens serielle port.',
+  'projects.jump-and-run.date': 'Mar 2025',
+  'projects.jump-and-run.label': 'Rust Spil',
+  'projects.jump-and-run.features.0': 'Procedurisk genereret terræn',
+  'projects.jump-and-run.features.1': 'Scoreboard system',
+  'projects.jump-and-run.features.2': 'Stigende sværhedsgrad',
+  'projects.jump-and-run.features.3': 'Micro:bit Integration via Seriel Port',
+
   'footer.contact': 'Kontakt',
   'footer.socials': 'Sociale Medier',
   'footer.rights': 'Alle rettigheder forbeholdes.',
