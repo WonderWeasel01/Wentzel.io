@@ -48,6 +48,7 @@ export const en = {
   'cv.skills': 'Skills',
   'cv.languages': 'Languages',
   'cv.role.title': 'Computer Science Student & Entrepreneur',
+  'cv.see_more': 'See everything I have made on my website: wentzel.io',
   'cv.location': 'Næstved, Denmark',
   'cv.bio': '24-year-old computer science student and entrepreneur with experience in frontend and full stack development, event planning, and business management. Working with React, Next.js, React Native, and modern web technology to create user-friendly and efficient digital solutions.',
   'cv.timeline.onezite.role': 'Founder',

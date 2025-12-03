@@ -331,7 +331,7 @@ export default function CVPage() {
     {/* Structured CV Modal */}
     <AnimatePresence>
     {showPreview && (
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowPreview(false)}>
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm print:hidden" onClick={() => setShowPreview(false)}>
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -355,6 +355,7 @@ export default function CVPage() {
                 <div>
                   <h1 className="text-4xl font-bold uppercase tracking-wider mb-2">Alexander Wentzel</h1>
                   <h2 className="text-xl text-stone-600 font-medium">{t('cv.role.title')}</h2>
+                  <p className="text-sm text-amber-700 font-medium mt-1">{t('cv.see_more')}</p>
                 </div>
               </div>
               <div className="text-right text-sm text-stone-600 space-y-1">
@@ -461,7 +462,7 @@ export default function CVPage() {
     </AnimatePresence>
 
     {/* Hidden Print Structure (for direct printing if needed outside modal context, though modal print is usually sufficient) */}
-    <div className="hidden print:block bg-white text-black p-8 max-w-[210mm] mx-auto">
+    <div className="hidden print:block bg-white text-black p-8 w-full min-h-screen">
        {/* Same structure as above for pure print styles */}
        <div className="border-b-2 border-stone-800 pb-8 mb-8 flex justify-between items-center">
               <div className="flex items-center gap-6">
@@ -477,6 +478,7 @@ export default function CVPage() {
                 <div>
                   <h1 className="text-4xl font-bold uppercase tracking-wider mb-2">Alexander Wentzel</h1>
                   <h2 className="text-xl text-stone-600 font-medium">{t('cv.role.title')}</h2>
+                  <p className="text-sm text-amber-700 font-medium mt-1">{t('cv.see_more')}</p>
                 </div>
               </div>
               <div className="text-right text-sm text-stone-600 space-y-1">

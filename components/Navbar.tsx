@@ -308,35 +308,24 @@ const NavbarContent = () => {
               </h3>
               <ul className="space-y-2">
                 {getLinksForCategory(category).map((link: any) => {
-                  const linkPath = link.path?.split('?')[0];
-                  const isPathMatch = pathname === linkPath;
+                  const currentCategory = searchParams.get('category');
+                  const [pathPart, queryPart] = (link.path || '').split('?');
+                  const isPathMatch = pathname === pathPart;
+                  
                   let isActive = false;
-
-                  // Force re-evaluation of search params
-                  const currentParams = new URLSearchParams(searchParams.toString());
-                  const currentCategory = currentParams.get('category');
-
-                  if (isPathMatch) {
-                    const linkQuery = link.path?.split('?')[1];
-
-                    if (linkQuery) {
-                      // This link has specific params (e.g. ?category=client)
-                      const linkParams = new URLSearchParams(linkQuery);
-                      const linkCategory = linkParams.get('category');
-                      
-                      // It's active only if the categories match
-                      isActive = currentCategory === linkCategory;
-                    } else {
-                      // This link has NO params (e.g. /projects or /cv)
-                      
-                      // Special case for /projects root: it's only active if there is NO category selected
-                      if (linkPath === '/projects') {
-                        isActive = !currentCategory;
+                  if (isPathMatch && link.path) {
+                      if (queryPart) {
+                          const linkParams = new URLSearchParams(queryPart);
+                          const linkCategory = linkParams.get('category');
+                          isActive = currentCategory === linkCategory;
                       } else {
-                        // For other pages (like /cv), path match is enough
-                        isActive = true;
+                          // No query params in link
+                          if (pathPart === '/projects') {
+                              isActive = !currentCategory;
+                          } else {
+                              isActive = true;
+                          }
                       }
-                    }
                   }
 
                   return (
@@ -348,7 +337,7 @@ const NavbarContent = () => {
                         transition: { duration: 0.2 },
                       }}
                       className={`cursor-pointer text-xs font-sans ${
-                        isActive ? 'text-[#E94D35]' : ''
+                        isActive ? '!text-[#E94D35]' : ''
                       }`}
                     >
                       {link.url ? (

@@ -48,6 +48,7 @@ export const da = {
   'cv.skills': 'Kompetencer',
   'cv.languages': 'Sprog',
   'cv.role.title': 'Datamatiker & Iværksætter',
+  'cv.see_more': 'Se alt hvad jeg har lavet på min hjemmeside: wentzel.io',
   'cv.location': 'Næstved, Danmark',
   'cv.bio': '24-årig datamatikerstuderende og iværksætter med erfaring i frontend- og full stack-udvikling, eventplanlægning og virksomhedsledelse. Arbejder med React, Next.js, React Native og moderne webteknologi for at skabe brugervenlige og effektive digitale løsninger.',
   'cv.timeline.onezite.role': 'Stifter',
