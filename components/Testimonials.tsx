@@ -7,6 +7,10 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 // Helper function to convert company name to filename
 const getLogoPath = (companyName: string): string => {
+  // Handle special case for Innomize (capital I)
+  if (companyName.toLowerCase() === 'innomize') {
+    return `/companys/Innomize.png`;
+  }
   const filename = companyName
     .toLowerCase()
     .replace(/\s+/g, '-')

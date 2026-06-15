@@ -317,7 +317,7 @@ export default function CVPage() {
             </div>
 
             <div className="space-y-16">
-              {timelineData.map((item, index) => (
+              {(timelineData || []).map((item, index) => (
                 <TimelineItemCard key={item.id} item={item} index={index} />
               ))}
             </div>
@@ -381,7 +381,7 @@ export default function CVPage() {
                 <section>
                   <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.experience')}</h3>
                   <div className="space-y-6">
-                    {timelineData.filter(item => item.type === 'work').map(item => (
+                    {(timelineData || []).filter(item => item.type === 'work').map(item => (
                       <div key={item.id}>
                         <div className="flex justify-between items-baseline mb-1">
                           <h4 className="font-bold text-stone-900">{item.role}</h4>
@@ -407,7 +407,7 @@ export default function CVPage() {
                 <section>
                   <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.education')}</h3>
                   <div className="space-y-4">
-                    {timelineData.filter(item => item.type === 'education').map(item => (
+                    {(timelineData || []).filter(item => item.type === 'education').map(item => (
                       <div key={item.id}>
                         <h4 className="font-bold text-sm text-stone-900">{item.company}</h4>
                         <div className="text-xs text-stone-600 mb-1">{item.role}</div>
@@ -504,7 +504,7 @@ export default function CVPage() {
                 <section>
                   <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.experience')}</h3>
                   <div className="space-y-6">
-                    {timelineData.filter(item => item.type === 'work').map(item => (
+                    {(timelineData || []).filter(item => item.type === 'work').map(item => (
                       <div key={item.id}>
                         <div className="flex justify-between items-baseline mb-1">
                           <h4 className="font-bold text-stone-900">{item.role}</h4>
@@ -530,7 +530,7 @@ export default function CVPage() {
                 <section>
                   <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.education')}</h3>
                   <div className="space-y-4">
-                    {timelineData.filter(item => item.type === 'education').map(item => (
+                    {(timelineData || []).filter(item => item.type === 'education').map(item => (
                       <div key={item.id}>
                         <h4 className="font-bold text-sm text-stone-900">{item.company}</h4>
                         <div className="text-xs text-stone-600 mb-1">{item.role}</div>

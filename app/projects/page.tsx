@@ -66,7 +66,7 @@ function ProjectsContent() {
     return 0;
   };
 
-  const filteredProjects = projects
+  const filteredProjects = (projects || [])
     .filter((project) => {
       if (category === 'client') return project.type === 'client';
       if (category === 'personal') return project.type === 'personal';

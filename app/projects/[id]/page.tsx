@@ -76,13 +76,15 @@ export default function ProjectDetailPage() {
         {/* Hero Section with full width image */}
         <div className="relative h-[50vh] md:h-[60vh] w-full z-10">
           <div className="absolute inset-0 w-full h-full">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-              unoptimized
-            />
+            {project.image && (
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover"
+                unoptimized
+              />
+            )}
           </div>
           
           {/* Overlay gradient */}
@@ -128,13 +130,15 @@ export default function ProjectDetailPage() {
                 Projekt Screenshot
               </h2>
               <div className="relative aspect-video w-full">
-                <Image
-                  src={project.screenshot}
-                  alt={`${project.title} screenshot`}
-                  fill
-                  className="object-contain"
-                  unoptimized
-                />
+                {project.screenshot && (
+                  <Image
+                    src={project.screenshot}
+                    alt={`${project.title} screenshot`}
+                    fill
+                    className="object-contain"
+                    unoptimized
+                  />
+                )}
               </div>
             </motion.div>
 
@@ -231,29 +235,33 @@ export default function ProjectDetailPage() {
                   {project.type === 'personal' ? t('project.screenshots') : t('project.mobile')}
                 </h2>
                 <div className="flex flex-col md:flex-row justify-center gap-12 items-center">
-                  <div className="relative w-[500px] h-[400px]">
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={project.phoneMockup}
-                        alt={`${project.title} Mobile 1`}
-                        fill
-                        className="object-contain"
-                        unoptimized
-                      />
+                  {project.phoneMockup && (
+                    <div className="relative w-[500px] h-[400px]">
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={project.phoneMockup}
+                          alt={`${project.title} Mobile 1`}
+                          fill
+                          className="object-contain"
+                          unoptimized
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
                   
-                  <div className="relative w-[500px] h-[400px]">
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={project.phoneMockup2}
-                        alt={`${project.title} Mobile 2`}
-                        fill
-                        className="object-contain"
-                        unoptimized
-                      />
+                  {project.phoneMockup2 && (
+                    <div className="relative w-[500px] h-[400px]">
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={project.phoneMockup2}
+                          alt={`${project.title} Mobile 2`}
+                          fill
+                          className="object-contain"
+                          unoptimized
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </motion.section>
 
@@ -319,7 +327,7 @@ export default function ProjectDetailPage() {
           <section className="mt-24 pt-12 border-t border-stone-200">
             <h2 className="text-3xl font-bold mb-8 text-stone-800">{t('project.other_projects')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {projects
+              {(projects || [])
                 .filter((p) => p.id !== project.id)
                 .sort(() => Math.random() - 0.5)
                 .slice(0, 3)

@@ -168,7 +168,7 @@ const NavbarContent = () => {
         transition={{ duration: 0.5 }}
         className={navClass}
       >
-      <div className="absolute inset-0 bg-[url(/assets/images/noisy-background.jpg)] opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-[url(/images/noisy-background.jpg)] opacity-20 pointer-events-none" />
       <motion.div
         className="absolute -right-8 -top-8 w-24 h-24 opacity-10 z-0"
         style={{
