@@ -17,8 +17,18 @@ import Navbar from '../../components/Navbar';
 import { shapes } from '../../components/shapes';
 import { projects, Project } from '../../data/projects';
 import Link from 'next/link';
-import Image from 'next/image';
+import ProjectImage from '../../components/ProjectImage';
 import { useLanguage } from '../../contexts/LanguageContext';
+
+const RECENT_PROJECT_ORDER: Record<string, number> = {
+  'sydfund': 7,
+  'beauty-by-wentzel': 6,
+  'ab-fyrreparken': 5,
+  'onezite': 4,
+  'membar': 3,
+  'membar-app': 2,
+  'city-biler': 1,
+};
 
 function ProjectsContent() {
   const { t } = useLanguage();
@@ -90,8 +100,14 @@ function ProjectsContent() {
       
       const dateA = t(`${a.translationKey}.date`);
       const dateB = t(`${b.translationKey}.date`);
-      
-      return parseDate(dateB) - parseDate(dateA);
+      const dateCompare = parseDate(dateB) - parseDate(dateA);
+      if (dateCompare !== 0) return dateCompare;
+
+      const orderA = RECENT_PROJECT_ORDER[a.id] ?? 0;
+      const orderB = RECENT_PROJECT_ORDER[b.id] ?? 0;
+      if (orderA !== orderB) return orderB - orderA;
+
+      return 0;
     });
 
   const getTitle = () => {
@@ -121,28 +137,22 @@ function ProjectsContent() {
 
         <div className="relative z-10">
           {/* Header Section */}
-          <motion.section
-            className="py-16 relative"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <section className="py-16 relative">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
                 <motion.h1
                   className="text-5xl md:text-6xl font-bold mb-6 grainy-text"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.8 }}
+                  transition={{ duration: 0.35 }}
                 >
                   {getTitle()}
                 </motion.h1>
                 <motion.p
                   className="text-xl md:text-2xl max-w-2xl mx-auto"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.8 }}
+                  transition={{ duration: 0.35, delay: 0.05 }}
                 >
                   {getSubtitle()}
                 </motion.p>
@@ -192,36 +202,30 @@ function ProjectsContent() {
                 </motion.div>
               )}
             </div>
-          </motion.section>
+          </section>
 
           {/* Projects Grid */}
-          <motion.section
-            className="py-12 relative"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <section className="py-12 relative">
             <div className="max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredProjects.map((project, index) => (
+                {filteredProjects.map((project) => (
                   <motion.div
                     key={project.id}
                     className="bg-white rounded-2xl overflow-hidden shadow-lg"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 * index, duration: 0.5 }}
-                    viewport={{ once: true }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                    viewport={{ once: true, margin: '120px 0px' }}
                     whileHover={{ y: -5 }}
                   >
                     <Link href={`/projects/${project.id}`}>
                       <div className="relative aspect-video overflow-hidden">
-                        <Image
+                        <ProjectImage
+                          project={project}
                           src={project.image}
                           alt={`${project.title} Screenshot`}
-                          fill
-                          className="object-cover"
-                          unoptimized
+                          variant="card"
+                          imageClassName="object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end justify-start p-4">
                           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 text-stone-900 rounded-lg">
@@ -273,18 +277,7 @@ function ProjectsContent() {
                 ))}
               </div>
             </div>
-          </motion.section>
-
-          {/* Contact CTA Section */}
-          <motion.section
-            className="py-16 relative"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-
-          </motion.section>
+          </section>
         </div>
       </main>
     </div>

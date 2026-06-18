@@ -3,13 +3,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { da } from '../locales/da';
 import { en } from '../locales/en';
+import { getAge } from '../lib/profile';
 
 type Language = 'da' | 'en';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (key: string, vars?: Record<string, string | number>) => string;
   isLanguageSelectorOpen: boolean;
   setIsLanguageSelectorOpen: (isOpen: boolean) => void;
 }
@@ -45,8 +46,15 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('hasSeenLanguagePopup', 'true');
   };
 
-  const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations['da']] || key;
+  const t = (key: string, vars?: Record<string, string | number>): string => {
+    let text = translations[language][key as keyof typeof translations['da']] || key;
+    const merged = { age: getAge(), ...vars };
+
+    for (const [name, value] of Object.entries(merged)) {
+      text = text.replace(new RegExp(`\\{${name}\\}`, 'g'), String(value));
+    }
+
+    return text;
   };
 
   return (

@@ -22,4 +22,10 @@ html {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
+
+  #structured-cv a[href] {
+    color: #b45309 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 2px;
+  }
 }

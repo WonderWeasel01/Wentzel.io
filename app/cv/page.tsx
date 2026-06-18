@@ -6,7 +6,6 @@ import { shapes } from '../../components/shapes';
 import NoiseFilter from '../../components/NoiseFilter';
 import Navbar from '../../components/Navbar';
 import { 
-  Download, 
   Briefcase, 
   GraduationCap, 
   MapPin, 
@@ -19,11 +18,12 @@ import {
   Layout,
   PenTool,
   Printer,
-  ArrowDown
+  ArrowUpRight,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useLanguage } from '../../contexts/LanguageContext';
 import Footer from '../../components/Footer';
+import Link from 'next/link';
 
 interface TimelineItem {
   id: string;
@@ -73,49 +73,39 @@ export default function CVPage() {
 
   const timelineData: TimelineItem[] = [
     {
+      id: 'membar-app',
+      role: t('cv.timeline.membar_app.role'),
+      company: 'Membar',
+      period: `2025 - ${t('cv.present')}`,
+      description: [
+        t('cv.timeline.membar_app.desc1'),
+        t('cv.timeline.membar_app.desc2'),
+        t('cv.timeline.membar_app.desc3')
+      ],
+      type: 'work'
+    },
+    {
       id: 'onezite',
       role: t('cv.timeline.onezite.role'),
       company: 'Onezite ApS',
       period: `Apr 2025 - ${t('cv.present')}`,
-      location: 'Omøvej 6A 4700 Næstved',
+      location: 'Næstved',
       description: [
         t('cv.timeline.onezite.desc1'),
-        t('cv.timeline.onezite.desc2')
+        t('cv.timeline.onezite.desc2'),
+        t('cv.timeline.onezite.desc3')
       ],
       type: 'work'
     },
     {
-      id: 'wentzel-event-aps',
-      role: t('cv.timeline.wentzel_event_aps.role'),
-      company: 'Wentzel Event ApS',
-      period: `Sep 2024 - ${t('cv.present')}`,
-      location: 'Omøvej 6A 4700 Næstved',
+      id: 'enterprise-pos',
+      role: t('cv.timeline.enterprise_pos.role'),
+      company: 'Holy Smash ApS & Gadefesten',
+      period: '2025',
       description: [
-        t('cv.timeline.wentzel_event_aps.desc1'),
-        t('cv.timeline.wentzel_event_aps.desc2')
-      ],
-      type: 'work'
-    },
-    {
-      id: 'friedrich-wentzel',
-      role: t('cv.timeline.friedrich_wentzel.role'),
-      company: 'Friedrich/Wentzel ApS',
-      period: `Sep 2024 - ${t('cv.present')}`,
-      location: 'Fyrreparken 11 4700 Næstved',
-      description: [
-        t('cv.timeline.friedrich_wentzel.desc1')
-      ],
-      type: 'work'
-    },
-    {
-      id: 'wentzel-event',
-      role: t('cv.timeline.wentzel_event.role'),
-      company: 'Wentzel Event',
-      period: `Aug 2019 - ${t('cv.present')}`,
-      location: 'Omøvej 6A 4700 Næstved',
-      description: [
-        t('cv.timeline.wentzel_event.desc1'),
-        t('cv.timeline.wentzel_event.desc2')
+        t('cv.timeline.enterprise_pos.desc1'),
+        t('cv.timeline.enterprise_pos.desc2'),
+        t('cv.timeline.enterprise_pos.desc3')
       ],
       type: 'work'
     },
@@ -136,7 +126,10 @@ export default function CVPage() {
       role: t('cv.timeline.datamatiker.role'),
       company: t('cv.timeline.datamatiker.company'),
       period: 'Sep 2022 - Jan 2026',
-      description: [],
+      description: [
+        t('cv.timeline.datamatiker.desc1'),
+        t('cv.timeline.datamatiker.desc2')
+      ],
       type: 'education'
     },
     {
@@ -173,11 +166,14 @@ export default function CVPage() {
   ];
 
   const skills = [
-    { name: 'React, React Native & Next.js', icon: Code },
-    { name: 'Java, Rust & TypeScript', icon: Code },
-    { name: 'One-page Hjemmesider', icon: Globe },
-    { name: 'Adobe Pakken', icon: PenTool },
-    { name: 'UI/UX & Design', icon: Layout },
+    { name: t('cv.skill.react'), icon: Code },
+    { name: t('cv.skill.typescript'), icon: Code },
+    { name: t('cv.skill.fullstack'), icon: Layout },
+    { name: t('cv.skill.onpage'), icon: Globe },
+    { name: t('cv.skill.adobe'), icon: PenTool },
+    { name: t('cv.skill.uiux'), icon: Layout },
+    { name: t('cv.skill.databases'), icon: Globe },
+    { name: t('cv.skill.payments'), icon: PenTool },
   ];
 
   const languages = [
@@ -208,9 +204,12 @@ export default function CVPage() {
               transition={{ duration: 0.5 }}
               className="mb-16"
             >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 grainy-text">
-                {t('cv.experience')}
+              <h1 className="text-4xl md:text-6xl font-bold mb-10 grainy-text">
+                {t('cv.title')}
               </h1>
+
+              <SectionHeader title={t('cv.info_section.title')} />
+
               <div className="bg-white/50 backdrop-blur-sm p-8 rounded-2xl border border-stone-200 shadow-sm">
                 <p className="text-lg md:text-xl text-stone-700 leading-relaxed mb-6">
                   {t('cv.bio')}
@@ -226,7 +225,7 @@ export default function CVPage() {
                     <Phone size={18} />
                     +45 52 39 12 48
                   </a>
-                  <a href="https://www.linkedin.com/in/alexander-wentzel-621654196/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-amber-600 transition-colors">
+                  <a href="https://www.linkedin.com/in/wentzel01" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-amber-600 transition-colors">
                     <Linkedin size={18} />
                     LinkedIn
                   </a>
@@ -242,10 +241,38 @@ export default function CVPage() {
                   </button>
                 </div>
               </div>
+
+              {/* Featured Apps */}
+              <div className="mt-10">
+                <SectionHeader title={t('cv.featured_apps.title')} />
+
+                <div className="grid gap-5">
+                  <FeaturedAppCard
+                    title={t('cv.featured_apps.membar.title')}
+                    role={t('cv.featured_apps.membar.role')}
+                    description={t('cv.featured_apps.membar.desc')}
+                    stat={t('cv.featured_apps.membar.stat')}
+                    image="/assets/membar-app-screenshot.webp"
+                    href="https://membar.dk"
+                    index={0}
+                  />
+                  <FeaturedAppCard
+                    title={t('cv.featured_apps.pos.title')}
+                    role={t('cv.featured_apps.pos.role')}
+                    description={t('cv.featured_apps.pos.desc')}
+                    stat={t('cv.featured_apps.pos.stat')}
+                    image="/assets/pos-screenshot.webp"
+                    href="https://holysmash.dk"
+                    index={1}
+                  />
+                </div>
+              </div>
             </motion.div>
 
+            <SectionHeader title={t('cv.competencies_section.title')} />
+
             {/* Skills & Languages Grid */}
-            <div className="grid md:grid-cols-2 gap-8 mb-24">
+            <div className="grid md:grid-cols-2 gap-8 mb-16">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -292,6 +319,8 @@ export default function CVPage() {
         {/* Timeline Section */}
         <div className="relative w-full px-12 pb-24" ref={containerRef}>
           <div className="max-w-4xl mx-auto relative">
+            <SectionHeader title={t('cv.experience')} />
+
             {/* Central Line */}
             <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-6 -ml-3 pointer-events-none overflow-hidden">
               {/* Background gray wavy line */}
@@ -331,244 +360,293 @@ export default function CVPage() {
     {/* Structured CV Modal */}
     <AnimatePresence>
     {showPreview && (
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm print:hidden" onClick={() => setShowPreview(false)}>
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm print:static print:inset-auto print:z-[100] print:block print:bg-white print:p-0 print:backdrop-blur-none"
+        onClick={() => setShowPreview(false)}
+      >
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-white max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl max-w-[210mm] w-full"
+          className="bg-white max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl max-w-[210mm] w-full print:max-h-none print:overflow-visible print:shadow-none print:rounded-none print:max-w-none print:w-full"
         >
-          <div id="structured-cv" className="bg-white text-black p-8 mx-auto">
-            {/* Header */}
-            <div className="border-b-2 border-stone-800 pb-8 mb-8 flex justify-between items-center">
-              <div className="flex items-center gap-6">
-                <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-stone-200 shrink-0">
-                  <Image 
-                    src="/images/alex.jpeg" 
-                    alt="Alex Wentzel" 
-                    fill 
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-                <div>
-                  <h1 className="text-4xl font-bold uppercase tracking-wider mb-2">Alexander Wentzel</h1>
-                  <h2 className="text-xl text-stone-600 font-medium">{t('cv.role.title')}</h2>
-                  <p className="text-sm text-amber-700 font-medium mt-1">{t('cv.see_more')}</p>
-                </div>
-              </div>
-              <div className="text-right text-sm text-stone-600 space-y-1">
-                <p>alex@wentzel.io</p>
-                <p>+45 52 39 12 48</p>
-                <p>{t('cv.location')}</p>
-                <p>linkedin.com/in/alexander-wentzel</p>
-              </div>
-            </div>
+          <StructuredCvDocument
+            t={t}
+            timelineData={timelineData}
+            skills={skills}
+            languages={languages}
+          />
 
-            <div className="grid grid-cols-3 gap-8">
-              {/* Left Column - Main Content */}
-              <div className="col-span-2 space-y-8">
-                {/* Profile */}
-                <section>
-                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.profile')}</h3>
-                  <p className="text-sm text-stone-700 leading-relaxed">
-                    {t('cv.bio')}
-                  </p>
-                </section>
-
-                {/* Experience */}
-                <section>
-                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.experience')}</h3>
-                  <div className="space-y-6">
-                    {(timelineData || []).filter(item => item.type === 'work').map(item => (
-                      <div key={item.id}>
-                        <div className="flex justify-between items-baseline mb-1">
-                          <h4 className="font-bold text-stone-900">{item.role}</h4>
-                          <span className="text-xs text-stone-500 font-medium">{item.period}</span>
-                        </div>
-                        <div className="text-sm text-amber-700 font-medium mb-1">{item.company}</div>
-                        {item.description.length > 0 && (
-                          <ul className="list-disc list-outside ml-4 text-xs text-stone-600 space-y-1">
-                            {item.description.map((desc, i) => (
-                              <li key={i}>{desc}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </div>
-
-              {/* Right Column - Sidebar */}
-              <div className="col-span-1 space-y-8">
-                {/* Education */}
-                <section>
-                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.education')}</h3>
-                  <div className="space-y-4">
-                    {(timelineData || []).filter(item => item.type === 'education').map(item => (
-                      <div key={item.id}>
-                        <h4 className="font-bold text-sm text-stone-900">{item.company}</h4>
-                        <div className="text-xs text-stone-600 mb-1">{item.role}</div>
-                        <span className="text-xs text-stone-500 block">{item.period}</span>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-
-                {/* Skills */}
-                <section>
-                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.skills')}</h3>
-                  <ul className="space-y-2">
-                    {skills.map((skill, index) => (
-                      <li key={index} className="text-sm text-stone-700 flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
-                        {skill.name}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-
-                {/* Languages */}
-                <section>
-                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.languages')}</h3>
-                  <ul className="space-y-2">
-                    {languages.map((lang, index) => (
-                      <li key={index} className="text-sm text-stone-700">
-                        <div className="font-medium">{lang.name}</div>
-                        <div className="text-xs text-stone-500">{lang.level}</div>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              </div>
-            </div>
-            
-            {/* Print Button Inside Modal */}
-            <div className="mt-12 flex justify-center print:hidden">
-              <button
-                onClick={handlePrint}
-                className="flex items-center gap-2 bg-stone-900 text-white px-6 py-3 rounded-lg hover:bg-stone-800 transition-colors"
-              >
-                <Printer size={18} />
-                Print / Gem som PDF
-              </button>
-            </div>
+          {/* Print Button Inside Modal */}
+          <div className="mt-12 flex justify-center print:hidden pb-8">
+            <button
+              onClick={handlePrint}
+              className="flex items-center gap-2 bg-stone-900 text-white px-6 py-3 rounded-lg hover:bg-stone-800 transition-colors"
+            >
+              <Printer size={18} />
+              Print / Gem som PDF
+            </button>
           </div>
         </motion.div>
       </div>
     )}
     </AnimatePresence>
-
-    {/* Hidden Print Structure (for direct printing if needed outside modal context, though modal print is usually sufficient) */}
-    <div className="hidden print:block bg-white text-black p-8 w-full min-h-screen">
-       {/* Same structure as above for pure print styles */}
-       <div className="border-b-2 border-stone-800 pb-8 mb-8 flex justify-between items-center">
-              <div className="flex items-center gap-6">
-                <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-stone-200 shrink-0">
-                  <Image 
-                    src="/images/alex.jpeg" 
-                    alt="Alex Wentzel" 
-                    fill 
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-                <div>
-                  <h1 className="text-4xl font-bold uppercase tracking-wider mb-2">Alexander Wentzel</h1>
-                  <h2 className="text-xl text-stone-600 font-medium">{t('cv.role.title')}</h2>
-                  <p className="text-sm text-amber-700 font-medium mt-1">{t('cv.see_more')}</p>
-                </div>
-              </div>
-              <div className="text-right text-sm text-stone-600 space-y-1">
-                <p>alex@wentzel.io</p>
-                <p>+45 52 39 12 48</p>
-                <p>{t('cv.location')}</p>
-                <p>linkedin.com/in/alexander-wentzel</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-8">
-              {/* Left Column - Main Content */}
-              <div className="col-span-2 space-y-8">
-                {/* Profile */}
-                <section>
-                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.profile')}</h3>
-                  <p className="text-sm text-stone-700 leading-relaxed">
-                    {t('cv.bio')}
-                  </p>
-                </section>
-
-                {/* Experience */}
-                <section>
-                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.experience')}</h3>
-                  <div className="space-y-6">
-                    {(timelineData || []).filter(item => item.type === 'work').map(item => (
-                      <div key={item.id}>
-                        <div className="flex justify-between items-baseline mb-1">
-                          <h4 className="font-bold text-stone-900">{item.role}</h4>
-                          <span className="text-xs text-stone-500 font-medium">{item.period}</span>
-                        </div>
-                        <div className="text-sm text-amber-700 font-medium mb-1">{item.company}</div>
-                        {item.description.length > 0 && (
-                          <ul className="list-disc list-outside ml-4 text-xs text-stone-600 space-y-1">
-                            {item.description.map((desc, i) => (
-                              <li key={i}>{desc}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </div>
-
-              {/* Right Column - Sidebar */}
-              <div className="col-span-1 space-y-8">
-                {/* Education */}
-                <section>
-                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.education')}</h3>
-                  <div className="space-y-4">
-                    {(timelineData || []).filter(item => item.type === 'education').map(item => (
-                      <div key={item.id}>
-                        <h4 className="font-bold text-sm text-stone-900">{item.company}</h4>
-                        <div className="text-xs text-stone-600 mb-1">{item.role}</div>
-                        <span className="text-xs text-stone-500 block">{item.period}</span>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-
-                {/* Skills */}
-                <section>
-                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.skills')}</h3>
-                  <ul className="space-y-2">
-                    {skills.map((skill, index) => (
-                      <li key={index} className="text-sm text-stone-700 flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
-                        {skill.name}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-
-                {/* Languages */}
-                <section>
-                  <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.languages')}</h3>
-                  <ul className="space-y-2">
-                    {languages.map((lang, index) => (
-                      <li key={index} className="text-sm text-stone-700">
-                        <div className="font-medium">{lang.name}</div>
-                        <div className="text-xs text-stone-500">{lang.level}</div>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              </div>
-            </div>
-    </div>
     </>
+  );
+}
+
+const CV_CONTACT = {
+  email: 'alex@wentzel.io',
+  phone: '+4552391248',
+  phoneDisplay: '+45 52 39 12 48',
+  linkedin: 'https://www.linkedin.com/in/wentzel01',
+  linkedinLabel: 'linkedin.com/in/wentzel01',
+  website: 'https://wentzel.io',
+  websiteLabel: 'wentzel.io',
+  maps: 'https://www.google.com/maps/search/?api=1&query=Næstved,Denmark',
+};
+
+function CvDocumentLink({
+  href,
+  children,
+  className = '',
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <a
+      href={href}
+      className={`text-amber-700 underline decoration-amber-700/40 underline-offset-2 hover:text-amber-800 ${className}`}
+    >
+      {children}
+    </a>
+  );
+}
+
+function StructuredCvDocument({
+  t,
+  timelineData,
+  skills,
+  languages,
+}: {
+  t: (key: string, vars?: Record<string, string | number>) => string;
+  timelineData: TimelineItem[];
+  skills: { name: string; icon: typeof Code }[];
+  languages: { name: string; level: string }[];
+}) {
+  return (
+    <div id="structured-cv" className="bg-white text-black p-8 mx-auto">
+      <div className="border-b-2 border-stone-800 pb-8 mb-8 flex justify-between items-center">
+        <div className="flex items-center gap-6">
+          <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-stone-200 shrink-0">
+            <Image
+              src="/images/alex.jpeg"
+              alt="Alex Wentzel"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+          <div>
+            <h1 className="text-4xl font-bold uppercase tracking-wider mb-2">Alexander Wentzel</h1>
+            <h2 className="text-xl text-stone-600 font-medium">{t('cv.role.title')}</h2>
+            <p className="text-sm font-medium mt-1">
+              <span className="text-stone-600">{t('cv.see_more_prefix')} </span>
+              <CvDocumentLink href={CV_CONTACT.website}>{CV_CONTACT.websiteLabel}</CvDocumentLink>
+            </p>
+          </div>
+        </div>
+        <div className="text-right text-sm text-stone-600 space-y-1">
+          <p>
+            <CvDocumentLink href={`mailto:${CV_CONTACT.email}`}>{CV_CONTACT.email}</CvDocumentLink>
+          </p>
+          <p>
+            <CvDocumentLink href={`tel:${CV_CONTACT.phone}`}>{CV_CONTACT.phoneDisplay}</CvDocumentLink>
+          </p>
+          <p>
+            <CvDocumentLink href={CV_CONTACT.maps}>{t('cv.location')}</CvDocumentLink>
+          </p>
+          <p>
+            <CvDocumentLink href={CV_CONTACT.linkedin}>{CV_CONTACT.linkedinLabel}</CvDocumentLink>
+          </p>
+          <p>
+            <CvDocumentLink href={CV_CONTACT.website}>{CV_CONTACT.websiteLabel}</CvDocumentLink>
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-3 gap-8">
+        <div className="col-span-2 space-y-8">
+          <section>
+            <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.profile')}</h3>
+            <p className="text-sm text-stone-700 leading-relaxed">{t('cv.bio')}</p>
+          </section>
+
+          <section>
+            <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.highlights')}</h3>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-bold text-stone-900 text-sm">
+                  {t('cv.highlight.membar.title')} —{' '}
+                  <CvDocumentLink href="https://membar.dk" className="text-sm">membar.dk</CvDocumentLink>
+                </h4>
+                <p className="text-xs text-stone-600 mt-1 leading-relaxed">{t('cv.highlight.membar.desc')}</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-stone-900 text-sm">
+                  {t('cv.highlight.pos.title')} —{' '}
+                  <CvDocumentLink href="https://holysmash.dk" className="text-sm">holysmash.dk</CvDocumentLink>
+                </h4>
+                <p className="text-xs text-stone-600 mt-1 leading-relaxed">{t('cv.highlight.pos.desc')}</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.experience')}</h3>
+            <div className="space-y-6">
+              {timelineData.filter((item) => item.type === 'work').map((item) => (
+                <div key={item.id}>
+                  <div className="flex justify-between items-baseline mb-1">
+                    <h4 className="font-bold text-stone-900">{item.role}</h4>
+                    <span className="text-xs text-stone-500 font-medium">{item.period}</span>
+                  </div>
+                  <div className="text-sm text-amber-700 font-medium mb-1">{item.company}</div>
+                  {item.description.length > 0 && (
+                    <ul className="list-disc list-outside ml-4 text-xs text-stone-600 space-y-1">
+                      {item.description.map((desc, i) => (
+                        <li key={i}>{desc}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <div className="col-span-1 space-y-8">
+          <section>
+            <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.education')}</h3>
+            <div className="space-y-4">
+              {timelineData.filter((item) => item.type === 'education').map((item) => (
+                <div key={item.id}>
+                  <h4 className="font-bold text-sm text-stone-900">{item.company}</h4>
+                  <div className="text-xs text-stone-600 mb-1">{item.role}</div>
+                  <span className="text-xs text-stone-500 block">{item.period}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.skills')}</h3>
+            <ul className="space-y-2">
+              {skills.map((skill, index) => (
+                <li key={index} className="text-sm text-stone-700 flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
+                  {skill.name}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section>
+            <h3 className="text-lg font-bold uppercase border-b border-stone-300 pb-2 mb-4">{t('cv.languages')}</h3>
+            <ul className="space-y-2">
+              {languages.map((lang, index) => (
+                <li key={index} className="text-sm text-stone-700">
+                  <div className="font-medium">{lang.name}</div>
+                  <div className="text-xs text-stone-500">{lang.level}</div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SectionHeader({ title }: { title: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-6">
+      <div className="h-px flex-1 bg-stone-300" />
+      <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-stone-500">
+        {title}
+      </h2>
+      <div className="h-px flex-1 bg-stone-300" />
+    </div>
+  );
+}
+
+function FeaturedAppCard({
+  title,
+  role,
+  description,
+  stat,
+  image,
+  href,
+  index,
+}: {
+  title: string;
+  role: string;
+  description: string;
+  stat: string;
+  image: string;
+  href: string;
+  index: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.15 + index * 0.1 }}
+      className="group relative overflow-hidden rounded-2xl border border-stone-200 bg-stone-900 text-white shadow-lg"
+    >
+      <div className="absolute inset-0 opacity-20">
+        <Image src={image} alt={title} fill className="object-cover" unoptimized />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-r from-stone-950 via-stone-900/95 to-stone-900/70" />
+
+      <div className="relative z-10 flex flex-col md:flex-row md:items-stretch">
+        <div className="md:w-44 lg:w-52 shrink-0 p-4 md:p-5">
+          <div className="relative aspect-[9/16] w-full max-w-[140px] mx-auto md:max-w-none rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+            <Image src={image} alt={title} fill className="object-cover object-top" unoptimized />
+          </div>
+        </div>
+
+        <div className="flex flex-1 flex-col justify-between p-6 md:py-7 md:pr-7 md:pl-0">
+          <div>
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <span className="rounded-full bg-amber-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-stone-900">
+                {role}
+              </span>
+              <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-amber-100">
+                {stat}
+              </span>
+            </div>
+            <h3 className="text-2xl font-bold mb-3 grainy-text">{title}</h3>
+            <p className="text-stone-300 text-sm md:text-base leading-relaxed max-w-2xl">
+              {description}
+            </p>
+          </div>
+
+          <Link
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-flex items-center gap-2 self-start text-sm font-medium text-amber-400 transition-colors hover:text-amber-300"
+          >
+            {href.replace('https://', '')}
+            <ArrowUpRight size={16} />
+          </Link>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 

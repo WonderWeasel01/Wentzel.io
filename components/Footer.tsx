@@ -47,7 +47,7 @@ export default function Footer() {
                 <Github size={20} />
               </a>
               <a 
-                href="https://www.linkedin.com/in/alexander-wentzel-621654196/" 
+                href="https://www.linkedin.com/in/wentzel01"
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-2 bg-stone-200 rounded-full hover:bg-amber-500 hover:text-white transition-all"

@@ -20,7 +20,7 @@ import Navbar from '../../../components/Navbar';
 import { shapes } from '../../../components/shapes';
 import { projects, Project } from '../../../data/projects';
 import { useParams } from 'next/navigation';
-import Image from 'next/image';
+import ProjectImage from '../../../components/ProjectImage';
 import Link from 'next/link';
 import { useLanguage } from '../../../contexts/LanguageContext';
 
@@ -77,12 +77,12 @@ export default function ProjectDetailPage() {
         <div className="relative h-[50vh] md:h-[60vh] w-full z-10">
           <div className="absolute inset-0 w-full h-full">
             {project.image && (
-              <Image
+              <ProjectImage
+                project={project}
                 src={project.image}
                 alt={project.title}
-                fill
-                className="object-cover"
-                unoptimized
+                variant="hero"
+                imageClassName="object-cover"
               />
             )}
           </div>
@@ -131,12 +131,12 @@ export default function ProjectDetailPage() {
               </h2>
               <div className="relative aspect-video w-full">
                 {project.screenshot && (
-                  <Image
+                  <ProjectImage
+                    project={project}
                     src={project.screenshot}
                     alt={`${project.title} screenshot`}
-                    fill
-                    className="object-contain"
-                    unoptimized
+                    variant="screenshot"
+                    imageClassName="object-contain"
                   />
                 )}
               </div>
@@ -238,12 +238,12 @@ export default function ProjectDetailPage() {
                   {project.phoneMockup && (
                     <div className="relative w-[500px] h-[400px]">
                       <div className="relative w-full h-full">
-                        <Image
+                        <ProjectImage
+                          project={project}
                           src={project.phoneMockup}
                           alt={`${project.title} Mobile 1`}
-                          fill
-                          className="object-contain"
-                          unoptimized
+                          variant="phone"
+                          imageClassName="object-contain"
                         />
                       </div>
                     </div>
@@ -252,12 +252,12 @@ export default function ProjectDetailPage() {
                   {project.phoneMockup2 && (
                     <div className="relative w-[500px] h-[400px]">
                       <div className="relative w-full h-full">
-                        <Image
+                        <ProjectImage
+                          project={project}
                           src={project.phoneMockup2}
                           alt={`${project.title} Mobile 2`}
-                          fill
-                          className="object-contain"
-                          unoptimized
+                          variant="phone"
+                          imageClassName="object-contain"
                         />
                       </div>
                     </div>
@@ -337,12 +337,12 @@ export default function ProjectDetailPage() {
                       className="relative rounded-xl overflow-hidden h-72 shadow-md hover:shadow-xl transition-all duration-300 bg-white"
                       whileHover={{ y: -5 }}
                     >
-                      <Image
+                      <ProjectImage
+                        project={relatedProject}
                         src={relatedProject.image}
                         alt={relatedProject.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        unoptimized
+                        variant="card"
+                        imageClassName="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
                         <div className="bg-amber-500 text-stone-900 px-3 py-1 rounded-md inline-block mb-2 self-start text-xs font-bold uppercase">

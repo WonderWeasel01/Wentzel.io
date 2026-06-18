@@ -57,7 +57,7 @@ const NavbarContent = () => {
           { name: 'Email', url: 'mailto:alex@wentzel.io' },
           {
             name: 'LinkedIn',
-            url: 'https://www.linkedin.com/in/alexander-wentzel-621654196/',
+            url: 'https://www.linkedin.com/in/wentzel01',
           },
           { name: 'Github', url: 'https://github.com/WonderWeasel01' },
         ];

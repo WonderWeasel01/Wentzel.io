@@ -152,7 +152,7 @@ export default function Home() {
                       <Github size={20} />
                     </a>
                     <a
-                      href="https://www.linkedin.com/in/alexander-wentzel-621654196/"
+                      href="https://www.linkedin.com/in/wentzel01"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 border border-stone-300 rounded-full hover:bg-stone-200 transition-colors"
