@@ -11,8 +11,6 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string, vars?: Record<string, string | number>) => string;
-  isLanguageSelectorOpen: boolean;
-  setIsLanguageSelectorOpen: (isOpen: boolean) => void;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -24,26 +22,25 @@ const translations = {
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>('da');
-  const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
 
   useEffect(() => {
-    // Check if language is saved in localStorage
     const savedLanguage = localStorage.getItem('language') as Language | null;
-    const hasSeenPopup = localStorage.getItem('hasSeenLanguagePopup');
-
-    if (!hasSeenPopup) {
-      setIsLanguageSelectorOpen(true);
+    if (savedLanguage === 'da' || savedLanguage === 'en') {
+      setLanguageState(savedLanguage);
+      return;
     }
 
-    if (savedLanguage && (savedLanguage === 'da' || savedLanguage === 'en')) {
-      setLanguageState(savedLanguage);
+    const browserLang = navigator.language.toLowerCase();
+    if (browserLang.startsWith('da')) {
+      setLanguageState('da');
+    } else if (browserLang.startsWith('en')) {
+      setLanguageState('en');
     }
   }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem('language', lang);
-    localStorage.setItem('hasSeenLanguagePopup', 'true');
   };
 
   const t = (key: string, vars?: Record<string, string | number>): string => {
@@ -58,7 +55,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, isLanguageSelectorOpen, setIsLanguageSelectorOpen }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );

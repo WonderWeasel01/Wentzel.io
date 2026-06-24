@@ -36,57 +36,53 @@ export function buildProfileContext(language: ApplicationLanguage): string {
 - LinkedIn: ${CONTACT.linkedin}
 - GitHub: ${CONTACT.github}
 
-## Profil
-Hej! Jeg er Alex, en ${age}-årig Full Stack Udvikler med passion for at kombinere æstetik og funktionalitet i løsninger, der både virker og ser fantastiske ud. Jeg er stærkt iværksætterorienteret og har drevet egne virksomheder som Onezite ApS, Wentzel Event/Wentzel Event ApS og Friedrich/Wentzel ApS. Arbejder med React, Next.js og React Native.
+## Professionelt resumé
+Full Stack Udvikler på ${age} år med erfaring i skalerbare web- og mobilapplikationer (React, Next.js, React Native / RN). Kombinerer frontend-arkitektur, realtids systemer og brugeroplevelsesoptimering i produktionsklare løsninger. Iværksætter med 20+ leverede kundeløsninger.
 
 ## Kompetencer
-- React, React Native & Next.js
-- Java, Rust & TypeScript
-- Full Stack Udvikling
-- One-page hjemmesider
-- Adobe Pakken
-- UI/UX & Design
-- PostgreSQL & MySQL
+- React, React Native (RN) & Next.js
+- TypeScript, Java & Rust
+- Frontend Architecture
+- Real-time Systems
+- Scalable Applications
+- User Experience Optimization
+- API Design & Systemarkitektur
+- PostgreSQL (SQL) & MySQL
 - Betalinger (Viva, Stripe)
+- Full Stack Udvikling
 
 ## Sprog
 - Dansk (flydende)
 - Engelsk (flydende)
 - Tysk (grundlæggende)
 
-## Fremhævede projekter
-
-### Membar (CTO) — membar.dk
-Loyalitetsapp hvor jeg leder frontend og softwarevalg i hele appen. Beta med 300+ tilmeldte brugere — flere på vej ved den offentlige lancering.
-
-### Enterprise POS (Full Stack Udvikler)
-Samme POS-system i to use cases: daglig drift hos Holy Smash ApS (1 mio.+ kr. årlig omsætning via Viva) og festivaldrift hos Gadefesten (7.800 ordrer og 1,2 mio. kr. ved live event). Realtids ordrehåndtering, multi-lokations lagerstyring og optimeret checkout.
-
 ## Erhvervserfaring
 
 ### CTO — Membar (2025–nu)
-- Frontend-udvikling og valg af software/teknologistak i hele appen
-- Beta med 300+ tilmeldte brugere
+- Leder frontend-arkitektur og teknologistak (React Native / RN)
+- Beta med 300+ tilmeldte brugere; realtids check-in og belønninger
 
-### Full Stack Udvikler — Onezite ApS (apr. 2025–nu)
-- Skræddersyede webløsninger til virksomheder
-- Kundekontakt fra idé til lancering
-- 20+ digitale løsninger i React, Next.js og moderne webteknologi
+### Full Stack Udvikler & Grundlægger — Onezite ApS (apr. 2025–nu)
+- 20+ skræddersyede webløsninger i React, Next.js og TypeScript
+- Reducerede gennemsnitlig load time med 40–60% på udvalgte kundesider
 
-### Full Stack Udvikler — Holy Smash ApS & Gadefesten (2025)
-- Enterprise POS med Viva, realtids lager og salgsstatistik
-- Holy Smash: daglig produktion, 1 mio.+ kr. årligt
-- Gadefesten: 7.800 ordrer, 1,2 mio. kr. ved festival
+### Leadudvikler — Enterprise POS | Holy Smash ApS & Gadefesten (2025)
+- Enterprise POS med realtids ordrehåndtering, PostgreSQL (SQL) og Viva-betaling
+- Holy Smash: 1 mio.+ kr. årlig omsætning; checkout optimeret ~35% hurtigere under rush
+- Gadefesten: 7.800 ordrer og 1,2 mio. kr. på ét live event uden nedetid
 
-### Hold Træner — Lille Næstved Idræts Forening (2024–2026)
+## Projekter
 
-### Grafisk Design — Realtruck (jan. 2023–feb. 2024)
+### Membar (CTO) — membar.dk
+Loyalitetsapp med 300+ beta-brugere; frontend-arkitektur og skalerbar mobilplatform.
 
-### Produktionsmedarbejder — Realtruck (sep. 2017–jan. 2023)
+### Enterprise POS — Holy Smash ApS & Gadefesten
+Samme POS-platform i restaurantdrift og festivaldrift: 7.800 ordrer, 1,2 mio. kr. ved peak-event.
 
 ## Uddannelse
 - Datamatiker — Zealand, Sjællands Erhvervsakademi (sep. 2022–jan. 2026)
-- Gymnasial uddannelse HF — Næstved Gymnasium og HF (aug. 2019–jun. 2021)`;
+  - Valgfag: React/Angular, Rust, IT-sikkerhed
+  - Praktik: karakter 12 (A). Afsluttende projekt: karakter 12 (A)`;
   }
 
   return `# About Alexander Wentzel
@@ -101,57 +97,53 @@ Samme POS-system i to use cases: daglig drift hos Holy Smash ApS (1 mio.+ kr. å
 - LinkedIn: ${CONTACT.linkedin}
 - GitHub: ${CONTACT.github}
 
-## Profile
-Hi! I'm Alex, a ${age}-year-old Full Stack Developer passionate about combining aesthetics and functionality in solutions that work well and look great. I'm strongly entrepreneur-oriented and have run my own companies including Onezite ApS, Wentzel Event/Wentzel Event ApS, and Friedrich/Wentzel ApS. Working with React, Next.js, and React Native.
+## Professional Summary
+Full Stack Developer, age ${age}, experienced in scalable web and mobile applications (React, Next.js, React Native / RN). Combines frontend architecture, real-time systems, and user experience optimization in production-ready solutions. Entrepreneur with 20+ delivered client solutions.
 
 ## Skills
-- React, React Native & Next.js
-- Java, Rust & TypeScript
-- Full Stack Development
-- One-page websites
-- Adobe Suite
-- UI/UX & Design
-- PostgreSQL & MySQL
+- React, React Native (RN) & Next.js
+- TypeScript, Java & Rust
+- Frontend Architecture
+- Real-time Systems
+- Scalable Applications
+- User Experience Optimization
+- API Design & System Architecture
+- PostgreSQL (SQL) & MySQL
 - Payments (Viva, Stripe)
+- Full Stack Development
 
 ## Languages
 - Danish (fluent)
 - English (fluent)
 - German (basic)
 
-## Featured projects
-
-### Membar (CTO) — membar.dk
-Loyalty app where I lead frontend development and software choices across the entire app. Beta with 300+ signed-up users — more coming with the public launch.
-
-### Enterprise POS (Full Stack Developer)
-The same POS system in two use cases: daily operations at Holy Smash ApS (1M+ DKK annual revenue via Viva) and festival operations at Gadefesten (7,800 orders and 1.2 million DKK at a live event). Real-time order handling, multi-location inventory, and optimized checkout.
-
-## Work experience
+## Work Experience
 
 ### CTO — Membar (2025–present)
-- Frontend development and software/tech stack decisions across the entire app
-- Beta with 300+ signed-up users
+- Lead frontend architecture and tech stack (React Native / RN)
+- Beta with 300+ signed-up users; real-time check-in and rewards
 
-### Full Stack Developer — Onezite ApS (Apr 2025–present)
-- Custom web solutions for businesses
-- Customer contact from idea through launch
-- 20+ digital solutions in React, Next.js, and modern web technology
+### Full Stack Developer & Founder — Onezite ApS (Apr 2025–present)
+- 20+ custom web solutions in React, Next.js, and TypeScript
+- Reduced average load time by 40–60% on selected client sites
 
-### Full Stack Developer — Holy Smash ApS & Gadefesten (2025)
-- Enterprise POS with Viva, real-time inventory, and sales analytics
-- Holy Smash: daily production, 1M+ DKK annually
-- Gadefesten: 7,800 orders, 1.2M DKK at festival
+### Lead Developer — Enterprise POS | Holy Smash ApS & Gadefesten (2025)
+- Enterprise POS with real-time order handling, PostgreSQL (SQL), and Viva payments
+- Holy Smash: 1M+ DKK annual revenue; checkout ~35% faster during rush
+- Gadefesten: 7,800 orders and 1.2M DKK at a single live event with zero downtime
 
-### Team Coach — Lille Næstved Sports Association (2024–2026)
+## Projects
 
-### Graphic Design — Realtruck (Jan 2023–Feb 2024)
+### Membar (CTO) — membar.dk
+Loyalty app with 300+ beta users; frontend architecture and scalable mobile platform.
 
-### Production Employee — Realtruck (Sep 2017–Jan 2023)
+### Enterprise POS — Holy Smash ApS & Gadefesten
+Same POS platform in restaurant and festival operations: 7,800 orders, 1.2M DKK at peak event.
 
 ## Education
 - Computer Science (Datamatiker) — Zealand Academy (Sep 2022–Jan 2026)
-- High School HF — Næstved Gymnasium og HF (Aug 2019–Jun 2021)`;
+  - Electives: React/Angular, Rust, IT Security
+  - Internship: grade 12 (A). Final project: grade 12 (A)`;
 }
 
 export function buildApplicationPrompt(input: ApplicationPromptInput): string {
@@ -162,43 +154,45 @@ export function buildApplicationPrompt(input: ApplicationPromptInput): string {
   const extra = input.extraInstructions?.trim();
 
   if (input.outputLanguage === 'da') {
-    return `Du hjælper Alexander Wentzel med at skrive en skræddersyet jobansøgning.
+    return `Du hjælper Alexander Wentzel med at skrive en skræddersyet jobansøgning til en specifik stilling.
 
-Brug AL informationen om Alexander nedenfor. Tilpas ansøgningen til virksomheden og stillingen. Skriv professionelt, konkret og personligt — undgå generiske floskler. Fremhæv relevant erfaring (især Membar, Enterprise POS og Onezite) og match det med virksomhedens behov.
+Brug AL informationen om Alexander nedenfor. Tilpas ansøgningen præcist til virksomheden og stillingsopslaget. Skriv professionelt, konkret, personligt og selvsikkert — undgå generiske floskler som "jeg er en stærk teamplayer". Brug aktivt sprog og kvantificer resultater hvor muligt. Fremhæv især Membar (CTO/frontend), Enterprise POS (real-time + høj belastning) og Onezite (20+ løsninger + kundekontakt). Match direkte mod kravene i opslaget.
 
-Lever:
-1. En kort, stærk ansøgning (ca. 250–400 ord) — kun selve ansøgningsteksten, klar til PDF
-2. 3–5 konkrete bullet points der matcher stillingen
-3. En kort emnelinje til email
+Lever altid:
+- En kort, stærk ansøgning (250–380 ord) — kun selve ansøgningsteksten, klar til at kopiere ind i PDF.
+- 3–5 skarpe bullet points der matcher stillingens nøglekrav.
+- En stærk emnelinje til email (max 6–8 ord).
+- Forslag til 1–2 sætninger der kan tilføjes for at ramme virksomhedens værdier/mission.
 
-Skriv output på dansk.
+Skriv alt på dansk. Brug Alexanders tone: iværksætteragtig, praktisk og løsningsorienteret.
 
-${companyName ? `## Virksomhed\n${companyName}\n` : ''}${jobTitle ? `## Stilling\n${jobTitle}\n` : ''}
 ## Virksomhed & stillingsopslag
-${companyInfo || '(Indsæt virksomhedsinfo og stillingsopslag her før du sender prompten)'}
+${companyInfo || '(Indsæt her)'}
+${companyName ? `\nVirksomhed: ${companyName}` : ''}${jobTitle ? `\nStilling: ${jobTitle}` : ''}
+${extra ? `\n## Ekstra instruktioner\n${extra}` : ''}
 
-${extra ? `## Ekstra instruktioner\n${extra}\n` : ''}
 ---
 
 ${profile}`;
   }
 
-  return `You are helping Alexander Wentzel write a tailored job application.
+  return `You are helping Alexander Wentzel write a tailored job application for a specific role.
 
-Use ALL of the information about Alexander below. Adapt the application to the company and role. Write professionally, concretely, and personally — avoid generic fluff. Highlight relevant experience (especially Membar, Enterprise POS, and Onezite) and match it to the company's needs.
+Use ALL of the information about Alexander below. Adapt the application precisely to the company and job posting. Write professionally, concretely, personally, and confidently — avoid generic fluff like "I am a strong team player". Use active language and quantify results where possible. Highlight especially Membar (CTO/frontend), Enterprise POS (real-time + high load) and Onezite (20+ solutions + client contact). Match directly against the requirements in the posting.
 
-Deliver:
-1. A short, strong cover letter (approx. 250–400 words) — cover letter text only, ready for PDF
-2. 3–5 concrete bullet points matching the role
-3. A short email subject line
+Always deliver:
+- A short, strong cover letter (250–380 words) — cover letter text only, ready to copy into PDF.
+- 3–5 sharp bullet points matching the role's key requirements.
+- A strong email subject line (max 6–8 words).
+- Suggestions for 1–2 sentences that can be added to align with the company's values/mission.
 
-Write output in English.
+Write everything in English. Use Alexander's tone: entrepreneurial, practical, and solution-oriented.
 
-${companyName ? `## Company\n${companyName}\n` : ''}${jobTitle ? `## Role\n${jobTitle}\n` : ''}
 ## Company & job posting
-${companyInfo || '(Paste company info and job posting here before sending the prompt)'}
+${companyInfo || '(Paste here)'}
+${companyName ? `\nCompany: ${companyName}` : ''}${jobTitle ? `\nRole: ${jobTitle}` : ''}
+${extra ? `\n## Extra instructions\n${extra}` : ''}
 
-${extra ? `## Extra instructions\n${extra}\n` : ''}
 ---
 
 ${profile}`;

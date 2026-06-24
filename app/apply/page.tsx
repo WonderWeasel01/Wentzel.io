@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Copy, Check, Sparkles, Download, FileText } from 'lucide-react';
-import NoiseFilter from '../../components/NoiseFilter';
-import Navbar from '../../components/Navbar';
+import { PageShell } from '../../components/SiteChrome';
+import PillButton from '../../components/PillButton';
 import {
   buildApplicationPrompt,
   buildProfileContext,
@@ -102,38 +102,22 @@ export default function ApplyPage() {
   }, [finishedText, companyName, triggerPdfDownload]);
 
   return (
-    <div className="flex min-h-screen bg-stone-100 text-stone-900 selection:bg-amber-200 selection:text-stone-900 overflow-x-hidden">
-      <NoiseFilter />
-      <Navbar />
+    <PageShell>
+      <div className="relative z-10 w-full px-6 pb-16 pt-32 md:px-10 md:pt-40">
+        <div className="mx-auto max-w-4xl">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <div className="mb-3 flex items-center gap-3">
+              <Sparkles className="text-foreground/70" size={28} />
+              <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">{t('apply.title')}</h1>
+            </div>
+            <p className="mb-10 max-w-2xl leading-relaxed text-foreground/70">{t('apply.description')}</p>
 
-      <main className="flex flex-col w-full min-h-screen ml-0 md:ml-64 relative">
-        <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
-          <div className="absolute inset-0 bg-[url('/grain-pattern.svg')] bg-repeat opacity-30" />
-        </div>
-
-        <div className="relative z-10 w-full px-6 md:px-12 pt-24 pb-16">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <Sparkles className="text-amber-600" size={28} />
-                <h1 className="text-3xl md:text-4xl font-bold grainy-text">
-                  {t('apply.title')}
-                </h1>
-              </div>
-              <p className="text-stone-600 mb-10 max-w-2xl leading-relaxed">
-                {t('apply.description')}
-              </p>
-
-              <div className="grid gap-8">
-                <section className="bg-white/60 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-stone-200 shadow-sm space-y-5">
-                  <h2 className="text-lg font-bold">{t('apply.company_section')}</h2>
+            <div className="grid gap-8">
+              <section className="space-y-5 rounded-3xl border border-border bg-pill/60 p-6 md:p-8">
+                  <h2 className="text-lg font-semibold">{t('apply.company_section')}</h2>
 
                   <div>
-                    <label htmlFor="company-name" className="block text-sm font-medium text-stone-700 mb-2">
+                    <label htmlFor="company-name" className="mb-2 block text-sm font-medium text-foreground/80">
                       {t('apply.company_name')}
                     </label>
                     <input
@@ -142,12 +126,12 @@ export default function ApplyPage() {
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
                       placeholder={t('apply.company_name_placeholder')}
-                      className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-500/40"
+                      className="w-full rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-white/20"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="job-title" className="block text-sm font-medium text-stone-700 mb-2">
+                    <label htmlFor="job-title" className="mb-2 block text-sm font-medium text-foreground/80">
                       {t('apply.job_title')}
                     </label>
                     <input
@@ -156,12 +140,12 @@ export default function ApplyPage() {
                       value={jobTitle}
                       onChange={(e) => setJobTitle(e.target.value)}
                       placeholder={t('apply.job_title_placeholder')}
-                      className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-500/40"
+                      className="w-full rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-white/20"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="company-info" className="block text-sm font-medium text-stone-700 mb-2">
+                    <label htmlFor="company-info" className="mb-2 block text-sm font-medium text-foreground/80">
                       {t('apply.company_info')}
                     </label>
                     <textarea
@@ -170,12 +154,12 @@ export default function ApplyPage() {
                       onChange={(e) => setCompanyInfo(e.target.value)}
                       placeholder={t('apply.company_info_placeholder')}
                       rows={8}
-                      className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-500/40 resize-y min-h-[180px]"
+                      className="w-full resize-y rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-white/20 min-h-[180px]"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="extra" className="block text-sm font-medium text-stone-700 mb-2">
+                    <label htmlFor="extra" className="mb-2 block text-sm font-medium text-foreground/80">
                       {t('apply.extra_instructions')}
                     </label>
                     <textarea
@@ -184,19 +168,19 @@ export default function ApplyPage() {
                       onChange={(e) => setExtraInstructions(e.target.value)}
                       placeholder={t('apply.extra_instructions_placeholder')}
                       rows={3}
-                      className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-500/40 resize-y"
+                      className="w-full resize-y rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-white/20"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="output-lang" className="block text-sm font-medium text-stone-700 mb-2">
+                    <label htmlFor="output-lang" className="mb-2 block text-sm font-medium text-foreground/80">
                       {t('apply.output_language')}
                     </label>
                     <select
                       id="output-lang"
                       value={outputLanguage}
                       onChange={(e) => setOutputLanguage(e.target.value as ApplicationLanguage)}
-                      className="rounded-xl border border-stone-200 bg-white px-4 py-3 text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500/40"
+                      className="rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-white/20"
                     >
                       <option value="da">{t('apply.lang_da')}</option>
                       <option value="en">{t('apply.lang_en')}</option>
@@ -204,55 +188,49 @@ export default function ApplyPage() {
                   </div>
                 </section>
 
-                <section className="bg-stone-900 text-stone-100 p-6 md:p-8 rounded-2xl border border-stone-800 shadow-lg space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <section className="space-y-4 rounded-3xl border border-border bg-background/80 p-6 text-foreground md:p-8">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <h2 className="text-lg font-bold">{t('apply.prompt_section')}</h2>
-                      <p className="text-stone-400 text-sm mt-1">{t('apply.prompt_hint')}</p>
+                      <h2 className="text-lg font-semibold">{t('apply.prompt_section')}</h2>
+                      <p className="mt-1 text-sm text-muted-foreground">{t('apply.prompt_hint')}</p>
                     </div>
-                    <button
-                      onClick={() => copyText(fullPrompt, 'prompt')}
-                      className="inline-flex items-center justify-center gap-2 bg-amber-500 text-stone-900 px-5 py-3 rounded-xl font-medium hover:bg-amber-400 transition-colors shrink-0"
-                    >
+                    <PillButton type="button" size="md" onClick={() => copyText(fullPrompt, 'prompt')}>
                       {copied === 'prompt' ? <Check size={18} /> : <Copy size={18} />}
                       {copied === 'prompt' ? t('apply.copied') : t('apply.copy_prompt')}
-                    </button>
+                    </PillButton>
                   </div>
-                  <pre className="whitespace-pre-wrap text-sm leading-relaxed text-stone-300 bg-stone-950/50 border border-stone-800 rounded-xl p-4 max-h-[420px] overflow-y-auto font-mono">
+                  <pre className="max-h-[420px] overflow-y-auto whitespace-pre-wrap rounded-xl border border-border bg-pill/60 p-4 font-mono text-sm leading-relaxed text-foreground/80">
                     {fullPrompt}
                   </pre>
                 </section>
 
-                <section className="bg-white/60 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-stone-200 shadow-sm space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <section className="space-y-4 rounded-3xl border border-border bg-pill/60 p-6 md:p-8">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <h2 className="text-lg font-bold">{t('apply.profile_section')}</h2>
-                      <p className="text-stone-500 text-sm mt-1">{t('apply.profile_hint')}</p>
+                      <h2 className="text-lg font-semibold">{t('apply.profile_section')}</h2>
+                      <p className="mt-1 text-sm text-muted-foreground">{t('apply.profile_hint')}</p>
                     </div>
-                    <button
-                      onClick={() => copyText(profileContext, 'profile')}
-                      className="inline-flex items-center justify-center gap-2 border border-stone-300 bg-white text-stone-900 px-5 py-3 rounded-xl font-medium hover:bg-stone-50 transition-colors shrink-0"
-                    >
+                    <PillButton type="button" size="md" variant="outline" onClick={() => copyText(profileContext, 'profile')}>
                       {copied === 'profile' ? <Check size={18} /> : <Copy size={18} />}
                       {copied === 'profile' ? t('apply.copied') : t('apply.copy_profile')}
-                    </button>
+                    </PillButton>
                   </div>
-                  <pre className="whitespace-pre-wrap text-sm leading-relaxed text-stone-700 bg-stone-50 border border-stone-200 rounded-xl p-4 max-h-[320px] overflow-y-auto font-mono">
+                  <pre className="max-h-[320px] overflow-y-auto whitespace-pre-wrap rounded-xl border border-border bg-background/40 p-4 font-mono text-sm leading-relaxed text-foreground/75">
                     {profileContext}
                   </pre>
                 </section>
 
-                <section className="bg-amber-50/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-amber-200 shadow-sm space-y-5">
+              <section className="space-y-5 rounded-3xl border border-border bg-pill/60 p-6 md:p-8">
                   <div className="flex items-start gap-3">
-                    <FileText className="text-amber-700 shrink-0 mt-0.5" size={22} />
+                    <FileText className="mt-0.5 shrink-0 text-foreground/70" size={22} />
                     <div>
-                      <h2 className="text-lg font-bold text-stone-900">{t('apply.pdf_section')}</h2>
-                      <p className="text-stone-600 text-sm mt-1">{t('apply.pdf_hint')}</p>
+                      <h2 className="text-lg font-semibold">{t('apply.pdf_section')}</h2>
+                      <p className="mt-1 text-sm text-muted-foreground">{t('apply.pdf_hint')}</p>
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="finished-text" className="block text-sm font-medium text-stone-700 mb-2">
+                    <label htmlFor="finished-text" className="mb-2 block text-sm font-medium text-foreground/80">
                       {t('apply.finished_text')}
                     </label>
                     <textarea
@@ -261,35 +239,35 @@ export default function ApplyPage() {
                       onChange={(e) => setFinishedText(e.target.value)}
                       placeholder={t('apply.finished_text_placeholder')}
                       rows={12}
-                      className="w-full rounded-xl border border-amber-200 bg-white px-4 py-3 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-500/40 resize-y min-h-[240px]"
+                      className="w-full min-h-[240px] resize-y rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-white/20"
                     />
                   </div>
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div className="text-sm text-stone-600">
-                      <span className="font-medium text-stone-700">{t('apply.pdf_filename')}:</span>{' '}
-                      <span className="font-mono text-stone-800">{pdfFilename}</span>
+                    <div className="text-sm text-foreground/70">
+                      <span className="font-medium text-foreground">{t('apply.pdf_filename')}:</span>{' '}
+                      <span className="font-mono">{pdfFilename}</span>
                     </div>
-                    <button
+                    <PillButton
                       type="button"
+                      size="md"
                       onClick={() => void triggerPdfDownload()}
                       disabled={isDownloading}
-                      className="inline-flex items-center justify-center gap-2 bg-stone-900 text-white px-5 py-3 rounded-xl font-medium hover:bg-stone-800 transition-colors shrink-0 disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="shrink-0"
                     >
                       <Download size={18} />
                       {isDownloading ? t('apply.downloading_pdf') : t('apply.download_pdf')}
-                    </button>
+                    </PillButton>
                   </div>
 
                   {pdfError && (
-                    <p className="text-sm text-red-600">{pdfError}</p>
+                    <p className="text-sm text-red-400">{pdfError}</p>
                   )}
                 </section>
               </div>
-            </motion.div>
-          </div>
+          </motion.div>
         </div>
-      </main>
-    </div>
+      </div>
+    </PageShell>
   );
 }

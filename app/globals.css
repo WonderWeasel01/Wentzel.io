@@ -2,8 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background: oklch(0.07 0.005 30);
+  --foreground: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.55 0.01 30);
+  --border: oklch(0.2 0.01 30);
+  --pill: oklch(0.12 0.01 30);
+  --pill-foreground: oklch(0.96 0 0);
+  --brand-blue: hsl(195, 100%, 46%);
+  --brand-blue-light: hsl(196, 100%, 68%);
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  color: hsl(0 0% 100%);
+  background-color: var(--brand-blue);
+  background-image: url('/selection-grain.svg');
+  background-size: 96px 96px;
+  text-shadow: 0 0 0.6px hsl(195 100% 30% / 0.35);
+}
+
+::-moz-selection {
+  color: hsl(0 0% 100%);
+  background-color: var(--brand-blue);
+  background-image: url('/selection-grain.svg');
+  background-size: 96px 96px;
+  text-shadow: 0 0 0.6px hsl(195 100% 30% / 0.35);
+}
+
+@layer components {
+  .link-hover-blue {
+    @apply transition-colors duration-300 ease-out hover:text-brand-blue;
+  }
+}
+
+.wordmark {
+  background: linear-gradient(
+    to bottom,
+    oklch(0.28 0.02 30) 0%,
+    oklch(0.1 0.005 30) 60%,
+    oklch(0.07 0.005 30) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.footer-wordmark {
+  background: linear-gradient(
+    to bottom,
+    oklch(0.14 0.02 240) 0%,
+    oklch(0.2 0.05 235) 18%,
+    hsl(195, 100%, 38%) 52%,
+    hsl(196, 100%, 68%) 78%,
+    hsl(193, 85%, 62%) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 40px hsl(195 100% 50% / 0.15));
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
 }
 
 .custom-cursor {
