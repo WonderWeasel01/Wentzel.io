@@ -30,14 +30,7 @@ function formatDate(language: ApplicationLanguage): string {
   });
 }
 
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/\n/g, '<br />');
-}
+const PT_TO_MM = 0.352778;
 
 export async function downloadApplicationPdf(options: {
   companyName: string;
@@ -52,47 +45,108 @@ export async function downloadApplicationPdf(options: {
   const jobLabel = language === 'da' ? 'Vedr. stilling' : 'Re';
   const roleLabel = language === 'da' ? 'Full Stack Udvikler' : 'Full Stack Developer';
 
-  const recipientBlock =
-    companyName.trim() || jobTitle?.trim()
-      ? `<div style="margin-bottom: 24px; color: #444;">
-          ${companyName.trim() ? `<div><strong>${recipientLabel}:</strong> ${escapeHtml(companyName.trim())}</div>` : ''}
-          ${jobTitle?.trim() ? `<div><strong>${jobLabel}:</strong> ${escapeHtml(jobTitle.trim())}</div>` : ''}
-        </div>`
-      : '';
+  const { jsPDF } = await import('jspdf');
+  const doc = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
 
-  const html = `
-    <div style="font-family: Georgia, 'Times New Roman', serif; font-size: 11pt; line-height: 1.6; color: #1c1917; width: 170mm;">
-      <div style="margin-bottom: 28px; border-bottom: 1px solid #d6d3d1; padding-bottom: 16px;">
-        <div style="font-size: 16pt; font-weight: bold; margin-bottom: 4px;">${CONTACT.name}</div>
-        <div style="font-size: 10pt; color: #57534e; margin-bottom: 8px;">${roleLabel}</div>
-        <div style="font-size: 9pt; color: #78716c; line-height: 1.5;">
-          ${CONTACT.email} · ${CONTACT.phone}<br />
-          ${CONTACT.website} · ${CONTACT.linkedin}
-        </div>
-      </div>
-      <div style="font-size: 9pt; color: #78716c; margin-bottom: 20px;">${date}</div>
-      ${recipientBlock}
-      <div style="text-align: justify;">${escapeHtml(finishedText.trim())}</div>
-    </div>
-  `;
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 20;
+  const contentWidth = pageWidth - margin * 2;
+  let y = margin;
 
-  const container = document.createElement('div');
-  container.innerHTML = html;
-  document.body.appendChild(container);
+  const ensureSpace = (lineHeight: number) => {
+    if (y + lineHeight > pageHeight - margin) {
+      doc.addPage();
+      y = margin;
+    }
+  };
 
-  try {
-    const html2pdf = (await import('html2pdf.js')).default;
-    await html2pdf()
-      .set({
-        margin: [20, 20, 20, 20],
-        filename,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      })
-      .from(container)
-      .save();
-  } finally {
-    document.body.removeChild(container);
+  const writeParagraph = (
+    text: string,
+    {
+      fontSize,
+      fontStyle = 'normal',
+      color = [28, 25, 23],
+      lineSpacing = 1.5,
+      gapAfter = 0,
+      align = 'left',
+    }: {
+      fontSize: number;
+      fontStyle?: 'normal' | 'bold' | 'italic';
+      color?: [number, number, number];
+      lineSpacing?: number;
+      gapAfter?: number;
+      align?: 'left' | 'justify';
+    }
+  ) => {
+    doc.setFont('times', fontStyle);
+    doc.setFontSize(fontSize);
+    doc.setTextColor(color[0], color[1], color[2]);
+    const lineHeight = fontSize * PT_TO_MM * lineSpacing;
+    const lines = doc.splitTextToSize(text, contentWidth) as string[];
+    for (const line of lines) {
+      ensureSpace(lineHeight);
+      doc.text(line, margin, y, align === 'justify' ? { maxWidth: contentWidth, align: 'justify' } : undefined);
+      y += lineHeight;
+    }
+    y += gapAfter;
+  };
+
+  // Header
+  writeParagraph(CONTACT.name, { fontSize: 18, fontStyle: 'bold', color: [28, 25, 23], lineSpacing: 1.2 });
+  writeParagraph(roleLabel, { fontSize: 11, color: [87, 83, 78], lineSpacing: 1.3, gapAfter: 1 });
+  writeParagraph(`${CONTACT.email}  ·  ${CONTACT.phone}`, {
+    fontSize: 9.5,
+    color: [120, 113, 108],
+    lineSpacing: 1.4,
+  });
+  writeParagraph(`${CONTACT.website}  ·  ${CONTACT.linkedin}`, {
+    fontSize: 9.5,
+    color: [120, 113, 108],
+    lineSpacing: 1.4,
+    gapAfter: 4,
+  });
+
+  // Divider
+  doc.setDrawColor(214, 211, 209);
+  doc.setLineWidth(0.3);
+  doc.line(margin, y, pageWidth - margin, y);
+  y += 8;
+
+  // Date
+  writeParagraph(date, { fontSize: 9.5, color: [120, 113, 108], lineSpacing: 1.4, gapAfter: 6 });
+
+  // Recipient block
+  if (companyName.trim()) {
+    writeParagraph(`${recipientLabel}: ${companyName.trim()}`, {
+      fontSize: 11,
+      color: [68, 68, 68],
+      lineSpacing: 1.4,
+    });
   }
+  if (jobTitle?.trim()) {
+    writeParagraph(`${jobLabel}: ${jobTitle.trim()}`, {
+      fontSize: 11,
+      color: [68, 68, 68],
+      lineSpacing: 1.4,
+    });
+  }
+  if (companyName.trim() || jobTitle?.trim()) {
+    y += 6;
+  }
+
+  // Body — keep paragraph breaks intact
+  const paragraphs = finishedText.trim().split(/\n\s*\n/);
+  paragraphs.forEach((paragraph, index) => {
+    const clean = paragraph.replace(/\n/g, ' ').trim();
+    if (!clean) return;
+    writeParagraph(clean, {
+      fontSize: 11,
+      color: [28, 25, 23],
+      lineSpacing: 1.6,
+      gapAfter: index < paragraphs.length - 1 ? 4 : 0,
+    });
+  });
+
+  doc.save(filename);
 }

@@ -36,7 +36,7 @@ const navItems = [
     labelDa: 'Mine projekter',
     labelEn: 'My projects',
     preview: 'linear-gradient(135deg, oklch(0.22 0.10 150), oklch(0.10 0.03 150))',
-    image: '/assets/onezite-image.webp',
+    image: '/assets/eventlokalet-image.webp',
   },
 ];
 

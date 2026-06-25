@@ -146,6 +146,8 @@ export const da = {
   'apply.output_language': 'Sprog på AI-svar',
   'apply.lang_da': 'Dansk',
   'apply.lang_en': 'Engelsk',
+  'apply.email_mode': 'Sendes over email',
+  'apply.email_mode_hint': 'Få også en kort emnelinje og en mail-tekst der nævner vedhæftede filer (diplom, ansøgning og CV).',
   'apply.prompt_section': 'Kopiér denne prompt til AI',
   'apply.prompt_hint': 'Kopiér prompten til AI — den leverer ansøgning, bullet points, emnelinje og værdisætninger tilpasset opslaget.',
   'apply.copy_prompt': 'Kopiér prompt',

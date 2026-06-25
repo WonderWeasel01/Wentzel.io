@@ -330,19 +330,15 @@ function CVPageContent() {
           }}
           onMouseEnter={spinDownload}
           onMouseLeave={spinDownload}
-          className="group fixed bottom-6 right-6 z-[60] flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-white shadow-2xl ring-1 ring-white/10 isolate print:hidden md:bottom-8 md:right-8"
+          className="group fixed bottom-6 right-6 z-[80] flex items-center gap-2 rounded-full bg-brand-blue px-5 py-3 text-sm font-medium text-white shadow-2xl ring-1 ring-white/10 transition-colors duration-300 hover:bg-brand-blue/90 print:hidden md:bottom-8 md:right-8"
         >
-          <span
-            aria-hidden
-            className="absolute inset-0 -z-10 rounded-full bg-brand-blue transition-colors duration-300 group-hover:bg-brand-blue/90 group-hover:animate-pill-hover"
-          />
           <span
             className="relative inline-flex will-change-transform transition-transform duration-500 ease-in-out"
             style={{ transform: `rotate(${downloadRotation}deg)` }}
           >
             <Download size={18} />
           </span>
-          <span className="relative inline-block will-change-[filter] group-hover:animate-pill-hover">
+          <span className="relative inline-block">
             {t('cv.download.button')}
           </span>
         </motion.button>
@@ -359,12 +355,8 @@ function CVPageContent() {
           onMouseEnter={spinClose}
           onMouseLeave={spinClose}
           aria-label="Luk"
-          className="group fixed right-6 top-6 z-[60] flex size-10 items-center justify-center rounded-full text-white shadow-2xl ring-1 ring-white/10 isolate print:hidden md:right-8 md:top-8"
+          className="group fixed right-6 top-6 z-[80] flex size-10 items-center justify-center rounded-full bg-brand-blue text-white shadow-2xl ring-1 ring-white/10 transition-colors duration-300 hover:bg-brand-blue/90 print:hidden md:right-8 md:top-8"
         >
-          <span
-            aria-hidden
-            className="absolute inset-0 -z-10 rounded-full bg-brand-blue transition-colors duration-300 group-hover:bg-brand-blue/90 group-hover:animate-pill-hover"
-          />
           <span
             className="relative inline-flex will-change-transform transition-transform duration-500 ease-in-out"
             style={{ transform: `rotate(${closeRotation}deg)` }}

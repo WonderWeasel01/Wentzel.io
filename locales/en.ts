@@ -146,6 +146,8 @@ export const en = {
   'apply.output_language': 'AI output language',
   'apply.lang_da': 'Danish',
   'apply.lang_en': 'English',
+  'apply.email_mode': 'Sent over email',
+  'apply.email_mode_hint': 'Also get a short subject line and an email body mentioning the attached files (diploma, application, and CV).',
   'apply.prompt_section': 'Copy this prompt to AI',
   'apply.prompt_hint': 'Copy the prompt to AI — it delivers the letter, bullet points, subject line, and value-alignment sentences tailored to the posting.',
   'apply.copy_prompt': 'Copy prompt',

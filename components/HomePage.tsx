@@ -329,7 +329,7 @@ function About() {
   );
 }
 
-const FEATURED_PROJECT_IDS = ['membar-app', 'eventlokalet', 'enterprise-pos', 'jump-and-run'];
+const FEATURED_PROJECT_IDS = ['app-krudtraeven', 'eventlokalet', 'enterprise-pos', 'jump-and-run'];
 
 function Highlights() {
   const { t } = useLanguage();

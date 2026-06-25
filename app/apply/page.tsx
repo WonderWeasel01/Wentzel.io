@@ -24,6 +24,7 @@ export default function ApplyPage() {
   const [extraInstructions, setExtraInstructions] = useState('');
   const [finishedText, setFinishedText] = useState('');
   const [outputLanguage, setOutputLanguage] = useState<ApplicationLanguage>('da');
+  const [isEmail, setIsEmail] = useState(false);
   const [copied, setCopied] = useState<'prompt' | 'profile' | null>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [pdfError, setPdfError] = useState<string | null>(null);
@@ -42,8 +43,9 @@ export default function ApplyPage() {
         jobTitle,
         outputLanguage,
         extraInstructions,
+        isEmail,
       }),
-    [companyName, companyInfo, jobTitle, outputLanguage, extraInstructions]
+    [companyName, companyInfo, jobTitle, outputLanguage, extraInstructions, isEmail]
   );
 
   const pdfFilename = useMemo(
@@ -126,7 +128,7 @@ export default function ApplyPage() {
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
                       placeholder={t('apply.company_name_placeholder')}
-                      className="w-full rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-white/20"
+                      className="w-full rounded-xl border border-border bg-white px-4 py-3 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-blue/40"
                     />
                   </div>
 
@@ -140,7 +142,7 @@ export default function ApplyPage() {
                       value={jobTitle}
                       onChange={(e) => setJobTitle(e.target.value)}
                       placeholder={t('apply.job_title_placeholder')}
-                      className="w-full rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-white/20"
+                      className="w-full rounded-xl border border-border bg-white px-4 py-3 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-blue/40"
                     />
                   </div>
 
@@ -154,7 +156,7 @@ export default function ApplyPage() {
                       onChange={(e) => setCompanyInfo(e.target.value)}
                       placeholder={t('apply.company_info_placeholder')}
                       rows={8}
-                      className="w-full resize-y rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-white/20 min-h-[180px]"
+                      className="w-full resize-y rounded-xl border border-border bg-white px-4 py-3 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-blue/40 min-h-[180px]"
                     />
                   </div>
 
@@ -168,7 +170,7 @@ export default function ApplyPage() {
                       onChange={(e) => setExtraInstructions(e.target.value)}
                       placeholder={t('apply.extra_instructions_placeholder')}
                       rows={3}
-                      className="w-full resize-y rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-white/20"
+                      className="w-full resize-y rounded-xl border border-border bg-white px-4 py-3 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-blue/40"
                     />
                   </div>
 
@@ -180,12 +182,29 @@ export default function ApplyPage() {
                       id="output-lang"
                       value={outputLanguage}
                       onChange={(e) => setOutputLanguage(e.target.value as ApplicationLanguage)}
-                      className="rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-white/20"
+                      className="rounded-xl border border-border bg-white px-4 py-3 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-brand-blue/40"
                     >
                       <option value="da">{t('apply.lang_da')}</option>
                       <option value="en">{t('apply.lang_en')}</option>
                     </select>
                   </div>
+
+                  <label
+                    htmlFor="email-mode"
+                    className="flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-background/40 p-4"
+                  >
+                    <input
+                      id="email-mode"
+                      type="checkbox"
+                      checked={isEmail}
+                      onChange={(e) => setIsEmail(e.target.checked)}
+                      className="mt-0.5 size-5 shrink-0 accent-brand-blue"
+                    />
+                    <span>
+                      <span className="block text-sm font-medium text-foreground">{t('apply.email_mode')}</span>
+                      <span className="mt-1 block text-sm text-muted-foreground">{t('apply.email_mode_hint')}</span>
+                    </span>
+                  </label>
                 </section>
 
               <section className="space-y-4 rounded-3xl border border-border bg-background/80 p-6 text-foreground md:p-8">
@@ -239,7 +258,7 @@ export default function ApplyPage() {
                       onChange={(e) => setFinishedText(e.target.value)}
                       placeholder={t('apply.finished_text_placeholder')}
                       rows={12}
-                      className="w-full min-h-[240px] resize-y rounded-xl border border-border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-white/20"
+                      className="w-full min-h-[240px] resize-y rounded-xl border border-border bg-white px-4 py-3 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-blue/40"
                     />
                   </div>
 

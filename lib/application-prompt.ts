@@ -8,6 +8,7 @@ export interface ApplicationPromptInput {
   jobTitle?: string;
   outputLanguage: ApplicationLanguage;
   extraInstructions?: string;
+  isEmail?: boolean;
 }
 
 const CONTACT = {
@@ -154,6 +155,25 @@ export function buildApplicationPrompt(input: ApplicationPromptInput): string {
   const jobTitle = input.jobTitle?.trim();
   const companyInfo = input.companyInfo.trim();
   const extra = input.extraInstructions?.trim();
+  const isEmail = input.isEmail ?? false;
+
+  const emailBlockDa = isEmail
+    ? `
+
+## Email (ansøgningen sendes over mail)
+Ansøgningen sendes som email med vedhæftede filer. Lever derudover:
+- En meget kort og fængende emnelinje (max 6 ord).
+- En kort, høflig email-brødtekst (3–5 sætninger) der indleder venligt, nævner at jeg vedhæfter mit eksamensbevis/diplom, ansøgning og CV, og som udtrykker at jeg håber de vil læse dem. Afslut med en venlig hilsen fra Alexander Wentzel. Hold den professionel men personlig og let at scanne.`
+    : '';
+
+  const emailBlockEn = isEmail
+    ? `
+
+## Email (application is sent over email)
+The application is sent as an email with attached files. Additionally deliver:
+- A very short, catchy subject line (max 6 words).
+- A short, polite email body (3–5 sentences) with a friendly opening that mentions I am attaching my diploma, application, and CV, and expresses that I hope they will read them. End with a kind sign-off from Alexander Wentzel. Keep it professional but personal and easy to scan.`
+    : '';
 
   if (input.outputLanguage === 'da') {
     return `Du hjælper Alexander Wentzel med at skrive en skræddersyet jobansøgning til en specifik stilling.
@@ -171,7 +191,7 @@ Skriv alt på dansk. Brug Alexanders tone: iværksætteragtig, praktisk og løsn
 ## Virksomhed & stillingsopslag
 ${companyInfo || '(Indsæt her)'}
 ${companyName ? `\nVirksomhed: ${companyName}` : ''}${jobTitle ? `\nStilling: ${jobTitle}` : ''}
-${extra ? `\n## Ekstra instruktioner\n${extra}` : ''}
+${extra ? `\n## Ekstra instruktioner\n${extra}` : ''}${emailBlockDa}
 
 ---
 
@@ -193,7 +213,7 @@ Write everything in English. Use Alexander's tone: entrepreneurial, practical, a
 ## Company & job posting
 ${companyInfo || '(Paste here)'}
 ${companyName ? `\nCompany: ${companyName}` : ''}${jobTitle ? `\nRole: ${jobTitle}` : ''}
-${extra ? `\n## Extra instructions\n${extra}` : ''}
+${extra ? `\n## Extra instructions\n${extra}` : ''}${emailBlockEn}
 
 ---
 
