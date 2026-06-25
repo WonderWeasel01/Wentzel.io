@@ -62,7 +62,8 @@ Full Stack Udvikler på ${age} år med erfaring i skalerbare web- og mobilapplik
 - Leder frontend-arkitektur og teknologistak (React Native / RN)
 - Beta med 300+ tilmeldte brugere; realtids check-in og belønninger
 
-### Full Stack Udvikler & Grundlægger — Onezite ApS (apr. 2025–nu)
+### Full Stack Udvikler & Grundlægger — Onezite ApS (apr. 2025–jan. 2026)
+- Startede og drev Onezite ApS ved siden af studiet for at få praktisk erhvervserfaring
 - 20+ skræddersyede webløsninger i React, Next.js og TypeScript
 - Reducerede gennemsnitlig load time med 40–60% på udvalgte kundesider
 
@@ -123,7 +124,8 @@ Full Stack Developer, age ${age}, experienced in scalable web and mobile applica
 - Lead frontend architecture and tech stack (React Native / RN)
 - Beta with 300+ signed-up users; real-time check-in and rewards
 
-### Full Stack Developer & Founder — Onezite ApS (Apr 2025–present)
+### Full Stack Developer & Founder — Onezite ApS (Apr 2025–Jan 2026)
+- Started and ran Onezite ApS alongside my studies to gain hands-on professional experience
 - 20+ custom web solutions in React, Next.js, and TypeScript
 - Reduced average load time by 40–60% on selected client sites
 

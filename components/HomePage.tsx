@@ -179,13 +179,28 @@ function Hero() {
 
   return (
     <section className="sticky top-0 z-0 h-screen min-h-screen overflow-hidden">
-      <div className="absolute inset-0 z-0">
+      <motion.div
+        className="absolute inset-0 z-0"
+        initial={{ opacity: 0, scale: 1.08, filter: 'blur(28px)' }}
+        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+        transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+      >
         <GradientBackground />
-        <div className="absolute inset-0 bg-black/25" />
+        <motion.div
+          className="absolute inset-0 bg-black/25"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2, ease: 'easeOut' }}
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-      </div>
+      </motion.div>
 
-      <div className="relative z-10 px-6 pt-40 md:px-10 md:pt-48">
+      <motion.div
+        className="relative z-10 px-6 pt-40 md:px-10 md:pt-48"
+        initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
+        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div className="ml-auto max-w-md text-right md:max-w-lg">
           <p className="text-balance text-base font-medium leading-relaxed tracking-tight text-white md:text-lg">
             {t('home.hero.intro')}
@@ -202,7 +217,7 @@ function Hero() {
             </PillButton>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <LanguageModal
         open={cvLanguageModalOpen}
@@ -210,8 +225,18 @@ function Hero() {
         onSelect={handleCvLanguageSelect}
       />
 
-      <div className="absolute inset-x-0 bottom-[34vh] z-10 flex items-center justify-between px-6 text-sm text-white/70 md:bottom-[36vh] md:px-10">
-        <span>{t('home.hero.tagline')}</span>
+      <motion.div
+        className="absolute inset-x-0 bottom-[34vh] z-10 flex items-center justify-between px-6 text-sm text-white/70 md:bottom-[36vh] md:px-10"
+        initial={{ opacity: 0, filter: 'blur(6px)' }}
+        animate={{ opacity: 1, filter: 'blur(0px)' }}
+        transition={{ duration: 0.9, delay: 0.9, ease: 'easeOut' }}
+      >
+        <span className="group relative cursor-help">
+          {t('home.hero.tagline')}
+          <span className="pointer-events-none absolute bottom-[calc(100%+0.5rem)] left-0 z-20 w-max max-w-[16rem] translate-y-1 rounded-lg bg-background/95 px-3 py-1.5 text-xs font-medium text-foreground opacity-0 shadow-lg ring-1 ring-white/10 backdrop-blur-sm transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
+            {t('home.hero.tagline_tooltip')}
+          </span>
+        </span>
         <span className="hidden items-center gap-2 md:inline-flex">
           <TimeIcon isNight={isNight} />
           {time} <span className="opacity-60">{location}</span>
@@ -220,16 +245,21 @@ function Hero() {
           {t('home.hero.scroll')} <span className="opacity-70">{t('home.hero.scrollHint')}</span>
           <ArrowDown className="size-4" />
         </span>
-      </div>
+      </motion.div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[8] h-[32vh] w-full md:h-auto">
+      <motion.div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[8] h-[32vh] w-full md:h-auto"
+        initial={{ opacity: 0, y: 40, filter: 'blur(12px)' }}
+        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        transition={{ duration: 1.1, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+      >
         <FullWidthWordmark
           mobileVh={0.32}
           className="select-none whitespace-nowrap text-left text-white font-extrabold leading-none tracking-[-0.04em] md:text-center"
         >
           WENTZEL
         </FullWidthWordmark>
-      </div>
+      </motion.div>
     </section>
   );
 }

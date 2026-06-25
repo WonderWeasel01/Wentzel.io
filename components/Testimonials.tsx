@@ -15,6 +15,8 @@ const getLogoPath = (companyName: string): string => {
   return `/companys/${filename}.png`;
 };
 
+const WHITE_LOGOS = new Set(['juvelen', 'krudtraeven']);
+
 const CompanyLogo = ({ company }: { company: string }) => {
   const [logoError, setLogoError] = useState(false);
   const logoPath = getLogoPath(company);
@@ -29,7 +31,9 @@ const CompanyLogo = ({ company }: { company: string }) => {
     <img
       src={logoPath}
       alt={company}
-      className="max-h-full max-w-full object-contain opacity-70 invert transition-opacity duration-300 group-hover:opacity-100"
+      className={`max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105 ${
+        WHITE_LOGOS.has(company.toLowerCase()) ? 'brightness-0 invert' : ''
+      }`}
       onError={() => setLogoError(true)}
     />
   );

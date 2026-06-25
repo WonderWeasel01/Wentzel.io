@@ -46,11 +46,17 @@ module.exports = {
           '75%': { transform: 'rotate(360deg)', filter: 'blur(2px)' },
           '100%': { transform: 'rotate(360deg)', filter: 'blur(0px)' },
         },
+        iconHover: {
+          '0%': { transform: 'rotate(0deg) scale(1)' },
+          '50%': { transform: 'rotate(180deg) scale(1.18)' },
+          '100%': { transform: 'rotate(360deg) scale(1)' },
+        },
       },
       animation: {
         'spin-slow': 'spinSlow 24s linear infinite',
         'pill-hover': 'pillHover 0.65s ease-in-out both',
         'shuriken-hover': 'shurikenHover 0.7s ease-in-out both',
+        'icon-hover': 'iconHover 0.6s ease-in-out both',
         scroll: 'scroll 40s linear infinite',
       },
     },

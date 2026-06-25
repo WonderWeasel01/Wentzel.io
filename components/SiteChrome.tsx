@@ -18,17 +18,28 @@ function WentzelLogo({ className = '' }: { className?: string }) {
         viewBox="0 0 32 32"
         fill="none"
         aria-hidden
-        className="rotate-180 transition-colors duration-300 group-hover:text-brand-blue"
+        className="origin-center transition-[transform,color] duration-500 ease-in-out group-hover:rotate-[360deg] group-hover:text-brand-blue"
       >
+        {/* W shape */}
         <path
-          d="M3 26 L10 8 L16 20 L22 8 L29 26"
+          d="M3 6 L9 26 L16 13 L23 26 L29 6"
           stroke="currentColor"
           strokeWidth="2.4"
           strokeLinecap="round"
           strokeLinejoin="round"
+          className="transition-opacity duration-300 ease-in-out group-hover:opacity-0"
+        />
+        {/* A shape */}
+        <path
+          d="M4 26 L16 5 L28 26 M9.5 19 L22.5 19"
+          stroke="currentColor"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
         />
       </svg>
-      <span className="text-[17px] font-semibold tracking-tight transition-colors duration-300 group-hover:text-brand-blue">
+      <span className="text-[17px] font-semibold tracking-tight transition-colors duration-300 will-change-[filter] group-hover:animate-pill-hover group-hover:text-brand-blue">
         Wentzel
       </span>
     </Link>
@@ -47,7 +58,9 @@ export function SiteTopBar({ ctaHref = '#contact' }: { ctaHref?: string }) {
 
       <DesktopNavMenu />
 
-      <ContactCtaButton href={ctaHref} className="fixed right-10 top-8 z-50 hidden md:inline-flex" />
+      <div className="fixed right-10 top-8 z-50 hidden md:block">
+        <ContactCtaButton href={ctaHref} />
+      </div>
     </>
   );
 }

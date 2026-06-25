@@ -18,12 +18,13 @@ import {
   Code,
   Layout,
   PenTool,
-  Printer,
   ArrowUpRight,
+  Download,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useLanguage } from '../../contexts/LanguageContext';
 import Link from 'next/link';
+import ShurikenIcon from '../../components/ShurikenIcon';
 
 interface TimelineItem {
   id: string;
@@ -53,6 +54,10 @@ function CVPageContent() {
   const lineHeight = useTransform(scrollProgress, [0, 1], ["0%", "100%"]);
 
   const [showPreview, setShowPreview] = useState(false);
+  const [downloadRotation, setDownloadRotation] = useState(0);
+  const [closeRotation, setCloseRotation] = useState(0);
+  const spinDownload = () => setDownloadRotation((r) => r + 180);
+  const spinClose = () => setCloseRotation((r) => r + 180);
 
   useEffect(() => {
     if (searchParams.get('download') === '1') {
@@ -85,7 +90,7 @@ function CVPageContent() {
       id: 'onezite',
       role: t('cv.timeline.onezite.role'),
       company: 'Onezite ApS',
-      period: `Apr 2025 - ${t('cv.present')}`,
+      period: 'Apr 2025 - Jan 2026',
       location: 'Næstved',
       description: [
         t('cv.timeline.onezite.desc1'),
@@ -312,18 +317,61 @@ function CVPageContent() {
             skills={skills}
             languages={languages}
           />
-
-          {/* Print Button Inside Modal */}
-          <div className="mt-12 flex justify-center print:hidden pb-8">
-            <button
-              onClick={handlePrint}
-              className="flex items-center gap-2 bg-stone-900 text-white px-6 py-3 rounded-lg hover:bg-stone-800 transition-colors"
-            >
-              <Printer size={18} />
-              Print / Gem som PDF
-            </button>
-          </div>
         </motion.div>
+
+        {/* Floating Download Button */}
+        <motion.button
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 16 }}
+          onClick={(e) => {
+            e.stopPropagation();
+            handlePrint();
+          }}
+          onMouseEnter={spinDownload}
+          onMouseLeave={spinDownload}
+          className="group fixed bottom-6 right-6 z-[60] flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-white shadow-2xl ring-1 ring-white/10 isolate print:hidden md:bottom-8 md:right-8"
+        >
+          <span
+            aria-hidden
+            className="absolute inset-0 -z-10 rounded-full bg-brand-blue transition-colors duration-300 group-hover:bg-brand-blue/90 group-hover:animate-pill-hover"
+          />
+          <span
+            className="relative inline-flex will-change-transform transition-transform duration-500 ease-in-out"
+            style={{ transform: `rotate(${downloadRotation}deg)` }}
+          >
+            <Download size={18} />
+          </span>
+          <span className="relative inline-block will-change-[filter] group-hover:animate-pill-hover">
+            {t('cv.download.button')}
+          </span>
+        </motion.button>
+
+        {/* Floating Close Button */}
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowPreview(false);
+          }}
+          onMouseEnter={spinClose}
+          onMouseLeave={spinClose}
+          aria-label="Luk"
+          className="group fixed right-6 top-6 z-[60] flex size-10 items-center justify-center rounded-full text-white shadow-2xl ring-1 ring-white/10 isolate print:hidden md:right-8 md:top-8"
+        >
+          <span
+            aria-hidden
+            className="absolute inset-0 -z-10 rounded-full bg-brand-blue transition-colors duration-300 group-hover:bg-brand-blue/90 group-hover:animate-pill-hover"
+          />
+          <span
+            className="relative inline-flex will-change-transform transition-transform duration-500 ease-in-out"
+            style={{ transform: `rotate(${closeRotation}deg)` }}
+          >
+            <ShurikenIcon className="size-4" />
+          </span>
+        </motion.button>
       </div>
     )}
     </AnimatePresence>
@@ -393,22 +441,33 @@ function StructuredCvDocument({
 
   return (
     <div id="structured-cv" className="mx-auto max-w-[210mm] bg-white p-10 font-sans text-black print:p-8">
-      <header className="mb-8 border-b-2 border-stone-800 pb-5">
-        <h1 className="text-3xl font-bold tracking-tight text-stone-900">Alexander Wentzel</h1>
-        <p className="mt-1 text-lg font-medium text-stone-700">{t('cv.role.title')}</p>
-        <p className="mt-3 text-sm leading-relaxed text-stone-600">
-          <CvDocumentLink href={`mailto:${CV_CONTACT.email}`}>{CV_CONTACT.email}</CvDocumentLink>
-          {' · '}
-          <CvDocumentLink href={`tel:${CV_CONTACT.phone}`}>{CV_CONTACT.phoneDisplay}</CvDocumentLink>
-          {' · '}
-          <CvDocumentLink href={CV_CONTACT.maps}>{t('cv.location')}</CvDocumentLink>
-          {' · '}
-          <CvDocumentLink href={CV_CONTACT.linkedin}>{CV_CONTACT.linkedinLabel}</CvDocumentLink>
-          {' · '}
-          <CvDocumentLink href={CV_CONTACT.github}>{CV_CONTACT.githubLabel}</CvDocumentLink>
-          {' · '}
-          <CvDocumentLink href={CV_CONTACT.website}>{CV_CONTACT.websiteLabel}</CvDocumentLink>
-        </p>
+      <header className="mb-8 flex items-center gap-6 border-b-2 border-stone-800 pb-5">
+        <div className="relative size-24 shrink-0 overflow-hidden rounded-full border border-stone-200">
+          <Image
+            src="/images/alex.jpeg"
+            alt="Alexander Wentzel"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div className="min-w-0">
+          <h1 className="text-3xl font-bold tracking-tight text-stone-900">Alexander Wentzel</h1>
+          <p className="mt-1 text-lg font-medium text-stone-700">{t('cv.role.title')}</p>
+          <p className="mt-3 text-sm leading-relaxed text-stone-600">
+            <CvDocumentLink href={`mailto:${CV_CONTACT.email}`}>{CV_CONTACT.email}</CvDocumentLink>
+            {' · '}
+            <CvDocumentLink href={`tel:${CV_CONTACT.phone}`}>{CV_CONTACT.phoneDisplay}</CvDocumentLink>
+            {' · '}
+            <CvDocumentLink href={CV_CONTACT.maps}>{t('cv.location')}</CvDocumentLink>
+            {' · '}
+            <CvDocumentLink href={CV_CONTACT.linkedin}>{CV_CONTACT.linkedinLabel}</CvDocumentLink>
+            {' · '}
+            <CvDocumentLink href={CV_CONTACT.github}>{CV_CONTACT.githubLabel}</CvDocumentLink>
+            {' · '}
+            <CvDocumentLink href={CV_CONTACT.website}>{CV_CONTACT.websiteLabel}</CvDocumentLink>
+          </p>
+        </div>
       </header>
 
       <div className="space-y-7 text-sm leading-relaxed text-stone-800">
