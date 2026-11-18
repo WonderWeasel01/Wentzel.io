@@ -2,8 +2,15 @@
 
 import { useEffect } from 'react';
 import { shapes } from './shapes';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function GlobalLanguageManager() {
+  const { language } = useLanguage();
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
   useEffect(() => {
     const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
     const link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;

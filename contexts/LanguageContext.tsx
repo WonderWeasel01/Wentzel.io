@@ -21,20 +21,12 @@ const translations = {
 };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('da');
+  const [language, setLanguageState] = useState<Language>('en');
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language') as Language | null;
     if (savedLanguage === 'da' || savedLanguage === 'en') {
       setLanguageState(savedLanguage);
-      return;
-    }
-
-    const browserLang = navigator.language.toLowerCase();
-    if (browserLang.startsWith('da')) {
-      setLanguageState('da');
-    } else if (browserLang.startsWith('en')) {
-      setLanguageState('en');
     }
   }, []);
 

@@ -3,6 +3,7 @@ import './globals.css';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import Footer from '../components/Footer';
 import GlobalLanguageManager from '../components/GlobalLanguageManager';
+import ChunkLoadRecovery from '../components/ChunkLoadRecovery';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wentzel.io'),
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   },
   description: 'Portfolio website for Alex Wentzel. Software developer specializing in React, Next.js, and creative web solutions.',
   icons: {
-    icon: 'https://i.ibb.co/37MY3YC/shape-18.png',
+    icon: '/Logo.png',
   },
   generator: 'Next.js',
   applicationName: 'Alex Wentzel Portfolio',
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     description: 'Portfolio website for Alex Wentzel. Software developer specializing in React, Next.js, and creative web solutions.',
     url: 'https://wentzel.io',
     siteName: 'Alex Wentzel Portfolio',
-    locale: 'da_DK',
+    locale: 'en_US',
     type: 'website',
     images: [
       {
@@ -61,9 +62,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="da">
+    <html lang="en">
       <body>
         <LanguageProvider>
+          <ChunkLoadRecovery />
           <GlobalLanguageManager />
           {children}
         </LanguageProvider>

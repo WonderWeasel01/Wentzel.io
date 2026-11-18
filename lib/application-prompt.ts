@@ -59,8 +59,9 @@ Full Stack Udvikler på ${age} år med erfaring i skalerbare web- og mobilapplik
 
 ## Erhvervserfaring
 
-### CTO — Membar (2025–nu)
-- Leder frontend-arkitektur og teknologistak (React Native / RN)
+### Frontend-udvikler — Membar (2025–nu)
+- Frontend-fokuseret udvikling (React Native / RN) — UI, komponentarkitektur og brugerflows
+- Træffer og driver valg i teknologistakken og frontend-arkitektur
 - Beta med 300+ tilmeldte brugere; realtids check-in og belønninger
 
 ### Full Stack Udvikler & Grundlægger — Onezite ApS (apr. 2025–jan. 2026)
@@ -75,8 +76,8 @@ Full Stack Udvikler på ${age} år med erfaring i skalerbare web- og mobilapplik
 
 ## Projekter
 
-### Membar (CTO) — membar.dk
-Loyalitetsapp med 300+ beta-brugere; frontend-arkitektur og skalerbar mobilplatform.
+### Membar — membar.dk
+Loyalitetsapp med 300+ beta-brugere; frontend-fokus, UI/UX og valg i teknologistakken.
 
 ### Enterprise POS — Holy Smash ApS & Gadefesten
 Samme POS-platform i restaurantdrift og festivaldrift: 7.800 ordrer, 1,2 mio. kr. ved peak-event.
@@ -121,8 +122,9 @@ Full Stack Developer, age ${age}, experienced in scalable web and mobile applica
 
 ## Work Experience
 
-### CTO — Membar (2025–present)
-- Lead frontend architecture and tech stack (React Native / RN)
+### Frontend Developer — Membar (2025–present)
+- Frontend-focused development (React Native / RN) — UI, component architecture, and user flows
+- Drive tech stack and frontend architecture decisions
 - Beta with 300+ signed-up users; real-time check-in and rewards
 
 ### Full Stack Developer & Founder — Onezite ApS (Apr 2025–Jan 2026)
@@ -137,8 +139,8 @@ Full Stack Developer, age ${age}, experienced in scalable web and mobile applica
 
 ## Projects
 
-### Membar (CTO) — membar.dk
-Loyalty app with 300+ beta users; frontend architecture and scalable mobile platform.
+### Membar — membar.dk
+Loyalty app with 300+ beta users; frontend focus, UI/UX, and tech stack decisions.
 
 ### Enterprise POS — Holy Smash ApS & Gadefesten
 Same POS platform in restaurant and festival operations: 7,800 orders, 1.2M DKK at peak event.
@@ -178,7 +180,7 @@ The application is sent as an email with attached files. Additionally deliver:
   if (input.outputLanguage === 'da') {
     return `Du hjælper Alexander Wentzel med at skrive en skræddersyet jobansøgning til en specifik stilling.
 
-Brug AL informationen om Alexander nedenfor. Tilpas ansøgningen præcist til virksomheden og stillingsopslaget. Skriv professionelt, konkret, personligt og selvsikkert — undgå generiske floskler som "jeg er en stærk teamplayer". Brug aktivt sprog og kvantificer resultater hvor muligt. Fremhæv især Membar (CTO/frontend), Enterprise POS (real-time + høj belastning) og Onezite (20+ løsninger + kundekontakt). Match direkte mod kravene i opslaget.
+Brug AL informationen om Alexander nedenfor. Tilpas ansøgningen præcist til virksomheden og stillingsopslaget. Skriv professionelt, konkret, personligt og selvsikkert — undgå generiske floskler som "jeg er en stærk teamplayer". Brug aktivt sprog og kvantificer resultater hvor muligt. Fremhæv især Membar (frontend/teknologistak), Enterprise POS (real-time + høj belastning) og Onezite (20+ løsninger + kundekontakt). Match direkte mod kravene i opslaget.
 
 Lever altid:
 - En kort, stærk ansøgning (250–380 ord) — kun selve ansøgningsteksten, klar til at kopiere ind i PDF.
@@ -200,7 +202,7 @@ ${profile}`;
 
   return `You are helping Alexander Wentzel write a tailored job application for a specific role.
 
-Use ALL of the information about Alexander below. Adapt the application precisely to the company and job posting. Write professionally, concretely, personally, and confidently — avoid generic fluff like "I am a strong team player". Use active language and quantify results where possible. Highlight especially Membar (CTO/frontend), Enterprise POS (real-time + high load) and Onezite (20+ solutions + client contact). Match directly against the requirements in the posting.
+Use ALL of the information about Alexander below. Adapt the application precisely to the company and job posting. Write professionally, concretely, personally, and confidently — avoid generic fluff like "I am a strong team player". Use active language and quantify results where possible. Highlight especially Membar (frontend/tech stack), Enterprise POS (real-time + high load) and Onezite (20+ solutions + client contact). Match directly against the requirements in the posting.
 
 Always deliver:
 - A short, strong cover letter (250–380 words) — cover letter text only, ready to copy into PDF.

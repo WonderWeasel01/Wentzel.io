@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Grip } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import ContactCtaButton from './ContactCtaButton';
+import LanguageSwitch from './LanguageSwitch';
 
 type MenuPhase = 'idle' | 'wide' | 'open' | 'closing';
 
@@ -151,6 +152,13 @@ function MenuPanelContent({
             />
           </Link>
         ))}
+      </div>
+
+      <div className="border-t border-border px-5 py-4">
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-xs text-muted-foreground">{isDa ? 'Sprog' : 'Language'}</p>
+          <LanguageSwitch variant="menu" />
+        </div>
       </div>
 
       <div className="border-t border-border px-5 py-5">

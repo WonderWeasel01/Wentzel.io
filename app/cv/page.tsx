@@ -606,9 +606,11 @@ function FeaturedAppCard({
         <div className="flex flex-1 flex-col justify-between p-6 md:py-7 md:pr-7 md:pl-0">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className="rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-black">
-                {role}
-              </span>
+              {role ? (
+                <span className="rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-black">
+                  {role}
+                </span>
+              ) : null}
               <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">
                 {stat}
               </span>

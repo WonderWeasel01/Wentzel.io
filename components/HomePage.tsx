@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, Sun, Moon, Github, Linkedin, Mail, Calendar, ExternalLink, Layers, Package, User, Download } from 'lucide-react';
@@ -17,11 +16,7 @@ import LanguageModal from './LanguageModal';
 import ContactCtaButton from './ContactCtaButton';
 import PillButton from './PillButton';
 import TechDock from './TechDock';
-
-const GradientBackground = dynamic(
-  () => import('./GradientBackground').then((m) => m.GradientBackground),
-  { ssr: false }
-);
+import { SafeGradientBackground } from './SafeGradientBackground';
 
 function useLocalTime(tz = 'Europe/Copenhagen', locale = 'da-DK') {
   const [time, setTime] = useState('');
@@ -185,7 +180,7 @@ function Hero() {
         animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
         transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        <GradientBackground />
+        <SafeGradientBackground />
         <motion.div
           className="absolute inset-0 bg-black/25"
           initial={{ opacity: 0 }}
